@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Users</title>
+</head>
+<body>
+
+<h2>Add a User</h2>
+<input type="text" id="name" placeholder="Name">
+<input type="email" id="email" placeholder="Email">
+<button onclick="addUser()">Add User</button>
+
+<h2>Delete a User</h2>
+<input type="number" id="userId" placeholder="User ID">
+<button onclick="deleteUser()">Delete User</button>
+
+<h2>All Users</h2>
+<button onclick="getUsers()">Get Users</button>
+<div id="users"></div>
+
+<script>
+  const apiUrl = 'http://localhost:8080';
+
+  async function addUser() {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    
+    const response = await fetch(apiUrl + '/add-user', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name, email }),
+    });
+    
+    const data = await response.json();
+    alert(data.message);
+  }
+
+  async function deleteUser() {
+    const id = document.getElementById('userId').value;
+    
+    const response = await fetch(apiUrl + '/delete-user', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ id }),
+    });
+    
+    const data = await response.json();
+    alert(data.message);
+  }
+
+  async function getUsers() {
+    const response = await fetch(apiUrl + '/get-users');
+    const data = await response.json();
+    
+    const usersDiv = document.getElementById('users');
+    usersDiv.innerHTML = '';
+    data.users.forEach(user => {
+      const userDiv = document.createElement('div');
+      userDiv.innerText = `ID: ${user.id}, Name: ${user.name}, Email: ${user.email}`;
+      usersDiv.appendChild(userDiv);
+    });
+  }
+</script>
+
+</body>
+</html>
