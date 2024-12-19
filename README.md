@@ -49,13 +49,13 @@ CyberZone aims to:
 
 ## 🌟 Screenshots
 
-### **User Dashboard**
-![User Dashboard](screenshots/user_dashboard.png)
+### **Home Page**
+
+### **Booking Page**
 
 ### **(Upcoming) Admin Panel Mockup**
 A dedicated admin page will be introduced soon. This page will allow administrators to manage users, bookings, and events, as well as access analytics and performance metrics to streamline club operations.
 
-![Admin Panel Mockup](screenshots/admin_panel_mock.png)
 
 ---
 
