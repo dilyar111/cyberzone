@@ -76,3 +76,44 @@ A dedicated admin page will be introduced soon. This page will allow administrat
 2. Run the following command to clone the repository to your local machine:
    ```bash
    git clone https://github.com/yourusername/cyberzone.git
+
+---
+
+# API Documentation
+
+## Endpoints
+
+### POST `/api/login`
+Logs in a user and returns a token.
+
+### POST `/api/bookings`
+Creates a new booking.
+
+### GET `/api/leaderboard`
+Fetches the leaderboard data.
+
+### POST `/api/events`
+Admins can create a new event.
+
+---
+
+## 🛠️ Technologies Used
+
+- **Programming Language:** Go (Golang) for backend development.
+- **Frontend:** HTML, CSS, JavaScript.
+- **Database:** PostgreSQL.
+- **Testing Tools:** Postman for API testing.
+- **Containerization:** Docker for deployment.
+- **Version Control:** Git & GitHub.
+
+---
+
+## 🧪 Testing
+
+To test the application:
+1. Use **Postman** for API requests.
+2. Test the frontend on `http://localhost:3000`.
+3. Ensure the backend is running at `http://localhost:8080`.
+
+---
+
