@@ -59,16 +59,6 @@ A dedicated admin page will be introduced soon. This page will allow administrat
 
 ---
 
-## 🛠 Technologies Used
-- **Programming Language**: Go (Golang) for backend development.
-- **Frontend**: HTML, CSS, JavaScript.
-- **Database**: PostgreSQL.
-- **Testing Tools**: Postman for API testing.
-- **Containerization**: Docker for deployment.
-- **Version Control**: Git & GitHub.
-
----
-
 ## 📝 How to Start the Project
 
 ### Step 1: Clone the Repository
@@ -79,7 +69,7 @@ A dedicated admin page will be introduced soon. This page will allow administrat
 
 ---
 
-# API Documentation
+## API Documentation
 
 ## Endpoints
 
