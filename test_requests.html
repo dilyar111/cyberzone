@@ -16,10 +16,6 @@
 <input type="number" id="userId" placeholder="User ID">
 <button onclick="deleteUser()">Delete User</button>
 
-<h2>Get User By ID</h2>
-<input type="number" id="getUserId" placeholder="User ID">
-<button onclick="getUserById()">Get User</button>
-<div id="user"></div>
 
 <h2>Update a User</h2>
 <input type="number" id="updateUserId" placeholder="User ID">
@@ -37,7 +33,7 @@
   async function addUser() {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
-
+  
     const response = await fetch(apiUrl + '/add-user', {
       method: 'POST',
       headers: {
@@ -45,18 +41,19 @@
       },
       body: JSON.stringify({ name, email }),
     });
-
+  
     const data = await response.json();
     alert(data.message);
-
-    // Clear input fields
+  
+    // Очистим поля ввода
     document.getElementById('name').value = '';
     document.getElementById('email').value = '';
   }
+  
 
   async function deleteUser() {
     const id = document.getElementById('userId').value;
-
+  
     const response = await fetch(apiUrl + '/delete-user', {
       method: 'POST',
       headers: {
@@ -64,74 +61,74 @@
       },
       body: JSON.stringify({ id }),
     });
-
+  
     const data = await response.json();
     alert(data.message);
-
-    // Clear input field
+  
+    // Очистим поле ввода
     document.getElementById('userId').value = '';
   }
+  
 
   async function getUsers() {
-    const response = await fetch(apiUrl + '/get-users');
+    const response = await fetch(apiUrl + '/get-users', { method: 'POST' }); // Приводим к POST, как на сервере
     const data = await response.json();
-
+  
     const usersDiv = document.getElementById('users');
     usersDiv.innerHTML = '';
-    data.users.forEach(user => {
-      const userDiv = document.createElement('div');
-      userDiv.innerText = `ID: ${user.id}, Name: ${user.name}, Email: ${user.email}`;
-      usersDiv.appendChild(userDiv);
-    });
-  }
-
-  async function getUserById() {
-    const id = document.getElementById('getUserId').value;
-
-    const response = await fetch(apiUrl + `/get-user?id=${id}`);
-    if (!response.ok) {
-      alert('Error fetching user. Please check the ID.');
-      return;
-    }
-
-    const data = await response.json();
-    const userDiv = document.getElementById('user');
-    if (data.user) {
-      userDiv.innerText = `ID: ${data.user.id}, Name: ${data.user.name}, Email: ${data.user.email}`;
+    if (data.users) {
+      data.users.forEach(user => {
+        const userDiv = document.createElement('div');
+        userDiv.innerText = `ID: ${user.id}, Name: ${user.name}, Email: ${user.email}`;
+        usersDiv.appendChild(userDiv);
+      });
     } else {
-      userDiv.innerText = 'User not found';
+      usersDiv.innerText = 'No users found';
     }
-
-    // Clear input field
-    document.getElementById('getUserId').value = '';
   }
+  
+
+  
+  
+
+  
+  
 
   async function updateUser() {
     const id = document.getElementById('updateUserId').value;
     const name = document.getElementById('updateName').value;
     const email = document.getElementById('updateEmail').value;
 
-    const response = await fetch(apiUrl + `/update-user`, {
-      method: 'POST', // Change to POST since the backend accepts POST
+    // Убедимся, что id, name и email заполнены
+    if (!id || !name || !email) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    const response = await fetch(apiUrl + '/update-user', {
+      method: 'POST',  // Используем POST запрос
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ id, name, email }), // Ensure 'id' is included
+      body: JSON.stringify({ id: parseInt(id), name, email }),  // Передаем id, name и email
     });
 
     if (!response.ok) {
       alert('Error updating user.');
+      const data = await response.json();
+      console.error("Error response:", data);  // Логируем подробности ошибки
       return;
     }
 
     const data = await response.json();
-    alert(data.message);
+    alert(data.message);  // Показать сообщение об успешном обновлении
 
-    // Clear input fields
+    // Очистим поля ввода
     document.getElementById('updateUserId').value = '';
     document.getElementById('updateName').value = '';
     document.getElementById('updateEmail').value = '';
-  }
+}
+
 </script>
 
 </body>
