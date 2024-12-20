@@ -66,6 +66,87 @@ A dedicated admin page will be introduced soon. This page will allow administrat
 2. Run the following command to clone the repository to your local machine:
    ```bash
    git clone https://github.com/yourusername/cyberzone.git
+   ```
+3. Navigate to the project directory:
+   ```bash
+   cd cyberzone
+   ```
+
+### Step 2: Start the Backend Server
+1. Go to the backend folder:
+   ```bash
+   cd backend
+   ```
+2. Ensure you have Go installed on your machine. Check by running:
+   ```bash
+   go version
+   ```
+   If Go is not installed, download it from [Go Downloads](https://go.dev/dl/).
+3. Install backend dependencies:
+   ```bash
+   go mod tidy
+   ```
+4. Configure your database connection in the `config.go` file. Example configuration:
+   ```go
+   const (
+       DBHost     = "localhost"
+       DBPort     = 5432
+       DBUser     = "your_postgres_user"
+       DBPassword = "your_password"
+       DBName     = "cyberzone"
+   )
+   ```
+5. Run the backend server:
+   ```bash
+   go run main.go
+   ```
+   The server will start running at [http://localhost:8080](http://localhost:8080).
+
+### Step 3: Prepare the Database
+1. Ensure PostgreSQL is installed and running on your machine.
+2. Log in to PostgreSQL:
+   ```bash
+   psql -U your_postgres_user
+   ```
+3. Create a new database:
+   ```sql
+   CREATE DATABASE cyberzone;
+   ```
+4. Import the database schema:
+   ```bash
+   psql -U your_postgres_user -d cyberzone -f database/schema.sql
+   ```
+
+### Step 4: Open the Frontend Web Page
+1. Navigate to the frontend folder:
+   ```bash
+   cd ../frontend
+   ```
+2. Open the `index.html` file in your preferred browser for the user interface.
+   - On most systems, you can open the file by simply double-clicking it.
+   - Alternatively, use a local server for a better experience (e.g., Live Server extension in VS Code).
+3. (Upcoming) To test the admin page, open `admin.html` (once available).
+
+### Step 5: Testing the Application
+1. **User Dashboard**:
+   - Open `index.html` in your browser and interact with the features such as booking systems and leaderboards.
+2. **API Endpoints**:
+   - Use Postman or a similar tool to test backend API endpoints.
+   - Example requests:
+     ```
+     POST http://localhost:8080/api/login
+     POST http://localhost:8080/api/bookings
+     ```
+
+### Step 6: Optional - Run the Project with Docker
+1. Ensure Docker is installed and running on your system.
+2. Use the following command to build and run the project:
+   ```bash
+   docker-compose up --build
+   ```
+3. Access the application in your browser:
+   - Frontend: [http://localhost:3000](http://localhost:3000)
+   - Backend API: [http://localhost:8080](http://localhost:8080)
 
 ---
 

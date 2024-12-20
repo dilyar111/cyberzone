@@ -14,22 +14,20 @@ import (
 )
 
 type User struct {
-	ID        uint   `json:"id" gorm:"primaryKey"`
-	Name      string `json:"name"`
-	Email     string `json:"email" gorm:"unique"`
-	CreatedAt string `json:"created_at"`
-	UpdatedAt string `json:"updated_at"`
+	ID    uint   `json:"id" gorm:"primaryKey"`
+	Name  string `json:"name"`
+	Email string `json:"email" gorm:"unique"`
 }
 
 type Response struct {
 	Status  string `json:"status"`
 	Message string `json:"message"`
 	Users   []User `json:"users,omitempty"`
+	User    *User  `json:"user,omitempty"`
 }
 
 var db *gorm.DB
 
-// Check if the database exists, and if not, create it
 func initDatabase() {
 	dsn := "user=postgres password=postgres sslmode=disable"
 	var err error
@@ -37,58 +35,21 @@ func initDatabase() {
 		Logger: logger.Default.LogMode(logger.Silent),
 	})
 	if err != nil {
-		log.Fatal("Failed to connect to the PostgreSQL server:", err)
+		log.Fatal("Failed to connect to PostgreSQL server:", err)
 	}
 
-	var result int
-	err = db.Raw("SELECT 1 FROM pg_database WHERE datname = ?", "gaming_club").Scan(&result).Error
-	if err != nil || result != 1 {
-		fmt.Println("Database does not exist. Creating database...")
-		err = db.Exec("CREATE DATABASE gaming_club").Error
-		if err != nil {
-			log.Fatal("Failed to create database:", err)
-		}
-	}
+	db.Exec("CREATE DATABASE IF NOT EXISTS gaming_club")
 
-	dsn = "user=postgres password=postgres dbname=gaming_club sslmode=disable"
-	db, err = gorm.Open(postgres.Open(dsn), &gorm.Config{
+	db, err = gorm.Open(postgres.Open("user=postgres password=postgres dbname=gaming_club sslmode=disable"), &gorm.Config{
 		Logger: logger.Default.LogMode(logger.Silent),
 	})
 	if err != nil {
-		log.Fatal("Failed to connect to the gaming_club database:", err)
+		log.Fatal("Failed to connect to gaming_club database:", err)
 	}
 
 	db.AutoMigrate(&User{})
 }
 
-// Handler for validating JSON payloads
-func handleJSONValidation(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodPost && r.Method != http.MethodGet {
-		w.WriteHeader(http.StatusMethodNotAllowed)
-		json.NewEncoder(w).Encode(Response{Status: "fail", Message: "Method not allowed"})
-		return
-	}
-
-	var payload map[string]interface{}
-	err := json.NewDecoder(r.Body).Decode(&payload)
-	if err != nil {
-		w.WriteHeader(http.StatusBadRequest)
-		json.NewEncoder(w).Encode(Response{Status: "fail", Message: "Invalid JSON format"})
-		return
-	}
-
-	message, ok := payload["message"]
-	if !ok || fmt.Sprintf("%T", message) != "string" {
-		w.WriteHeader(http.StatusBadRequest)
-		json.NewEncoder(w).Encode(Response{Status: "fail", Message: "Invalid JSON message"})
-		return
-	}
-
-	fmt.Println("Message received:", message)
-	json.NewEncoder(w).Encode(Response{Status: "success", Message: "Data successfully received"})
-}
-
-// Existing handler for adding a user
 func addUserHandler(w http.ResponseWriter, r *http.Request) {
 	var user User
 	err := json.NewDecoder(r.Body).Decode(&user)
@@ -96,11 +57,11 @@ func addUserHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Invalid input", http.StatusBadRequest)
 		return
 	}
+
 	db.Create(&user)
-	json.NewEncoder(w).Encode(Response{Status: "success", Message: "User added successfully"})
+	json.NewEncoder(w).Encode(Response{Status: "success", Message: "User added successfully", User: &user})
 }
 
-// Existing handler for deleting a user
 func deleteUserHandler(w http.ResponseWriter, r *http.Request) {
 	var data map[string]string
 	err := json.NewDecoder(r.Body).Decode(&data)
@@ -109,7 +70,7 @@ func deleteUserHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	id, err := strconv.Atoi(data["id"])
-	if err != nil || id <= 0 {
+	if err != nil {
 		http.Error(w, "Invalid user ID", http.StatusBadRequest)
 		return
 	}
@@ -117,31 +78,44 @@ func deleteUserHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(Response{Status: "success", Message: "User deleted successfully"})
 }
 
-// Existing handler for retrieving users
 func getUsersHandler(w http.ResponseWriter, r *http.Request) {
 	var users []User
 	db.Find(&users)
 	json.NewEncoder(w).Encode(Response{Status: "success", Users: users})
 }
 
+func updateUserHandler(w http.ResponseWriter, r *http.Request) {
+	var user User
+	err := json.NewDecoder(r.Body).Decode(&user)
+	if err != nil || user.ID == 0 || user.Name == "" || user.Email == "" {
+		http.Error(w, "Invalid input", http.StatusBadRequest)
+		return
+	}
+
+	result := db.Model(&User{}).Where("id = ?", user.ID).Updates(User{Name: user.Name, Email: user.Email})
+	if result.Error != nil {
+		http.Error(w, "User not found", http.StatusNotFound)
+		return
+	}
+
+	json.NewEncoder(w).Encode(Response{Status: "success", Message: "User updated successfully"})
+}
+
 func main() {
 	initDatabase()
 
-	// Handlers
-	http.HandleFunc("/", handleJSONValidation)
 	http.HandleFunc("/add-user", addUserHandler)
 	http.HandleFunc("/delete-user", deleteUserHandler)
 	http.HandleFunc("/get-users", getUsersHandler)
+	http.HandleFunc("/update-user", updateUserHandler)
 
-	// CORS handler
 	c := cors.New(cors.Options{
 		AllowedOrigins: []string{"*"},
-		AllowedMethods: []string{"GET", "POST", "DELETE", "OPTIONS"},
+		AllowedMethods: []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 		AllowedHeaders: []string{"Content-Type"},
 	})
 
 	handler := c.Handler(http.DefaultServeMux)
-
 	fmt.Println("Server is running on http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", handler))
 }
