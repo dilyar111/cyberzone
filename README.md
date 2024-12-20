@@ -51,7 +51,12 @@ CyberZone aims to:
 
 ### **Home Page**
 
+
+![Image alt](https://github.com/dilyar111/cyberzone/blob/main/Снимок%20экрана%202024-12-19%20в%2017.16.09.png)
+
 ### **Booking Page**
+
+![Image alt2](https://github.com/dilyar111/cyberzone/blob/main/Снимок%20экрана%202024-12-19%20в%2017.16.25.png)
 
 ### **(Upcoming) Admin Panel Mockup**
 A dedicated admin page will be introduced soon. This page will allow administrators to manage users, bookings, and events, as well as access analytics and performance metrics to streamline club operations.
