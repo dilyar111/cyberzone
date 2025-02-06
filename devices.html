@@ -252,74 +252,81 @@
         </footer>
       </div>
       <script>
-        // Функция для проверки статуса авторизации
-        function checkLoginStatus() {
-          const token = localStorage.getItem("auth_token"); // Получаем токен из localStorage
+        document.addEventListener("DOMContentLoaded", function() {
+          // Функция для проверки статуса авторизации
+          function checkLoginStatus() {
+            const token = localStorage.getItem("auth_token"); // Получаем токен из localStorage
       
-          if (token) {
-            const decoded = JSON.parse(atob(token.split('.')[1])); // Декодируем токен
+            if (token) {
+              const decoded = JSON.parse(atob(token.split('.')[1])); // Декодируем токен
       
-            // Если токен валиден, обновляем UI в зависимости от роли
-            document.getElementById("home-link").href = decoded.role === "Admin" ? "admin.html" : "user.html"; 
-            document.getElementById("users-link").style.display = "inline"; // Ссылка на "Users" видна для всех пользователей
-            document.getElementById("profile-icon").innerText = decoded.name ? decoded.name.charAt(0) : "U"; // Отображаем первую букву имени пользователя
+              // Если токен валиден, обновляем UI в зависимости от роли
+              const homeLink = document.getElementById("home-link");
+              if (homeLink) {
+                homeLink.href = decoded.role === "Admin" ? "admin.html" : "user.html"; 
+              }
+              
+              const usersLink = document.getElementById("users-link");
+              if (usersLink) {
+                usersLink.style.display = "inline"; // Ссылка на "Users" видна для всех пользователей
+              }
       
-            checkTokenExpiry(decoded); // Проверяем срок действия токена
-          } else {
-            // Если токен отсутствует, редиректим на страницу логина
-            window.location.href = "login.html";
+              const profileIcon = document.getElementById("profile-icon");
+              if (profileIcon) {
+                profileIcon.innerText = decoded.name ? decoded.name.charAt(0) : "U"; // Отображаем первую букву имени пользователя
+              }
+      
+              checkTokenExpiry(decoded); // Проверяем срок действия токена
+            } else {
+              // Если токен отсутствует, редиректим на страницу логина
+              window.location.href = "login.html";
+            }
           }
-        }
       
-        // Функция для проверки срока действия токена
-        function checkTokenExpiry(decoded) {
-          const currentTime = Math.floor(Date.now() / 1000); // Получаем текущее время в секундах
+          // Функция для проверки срока действия токена
+          function checkTokenExpiry(decoded) {
+            const currentTime = Math.floor(Date.now() / 1000); // Получаем текущее время в секундах
       
-          if (decoded.exp < currentTime) {
-            alert("Ваша сессия истекла. Пожалуйста, войдите снова.");
-            localStorage.removeItem("auth_token"); // Удаляем токен, если он истек
+            if (decoded.exp < currentTime) {
+              alert("Ваша сессия истекла. Пожалуйста, войдите снова.");
+              localStorage.removeItem("auth_token"); // Удаляем токен, если он истек
+              window.location.href = "login.html"; // Перенаправляем на страницу логина
+            }
+          }
+      
+          // Функция для проверки прав доступа к странице "Users"
+          function checkUserAccess() {
+            const token = localStorage.getItem("auth_token");
+      
+            if (token) {
+              const decoded = JSON.parse(atob(token.split('.')[1]));
+      
+              // Если роль не "Admin", и страница "users_chek.html", выводим предупреждение
+              if (decoded.role !== "Admin" && window.location.pathname.includes("users_chek.html")) {
+                alert("У вас нет доступа к этой странице.");
+              }
+            }
+          }
+      
+          // Функция для выхода из аккаунта
+          function logout() {
+            localStorage.removeItem("auth_token"); // Удаляем токен
             window.location.href = "login.html"; // Перенаправляем на страницу логина
           }
-        }
       
-        // Функция для выхода из аккаунта
-        function logout() {
-          localStorage.removeItem("auth_token"); // Удаляем токен
-          window.location.replace("main.html"); // Перезагружаем страницу и перенаправляем на главную страницу
-        }
+          // Функция, которая запускается при загрузке страницы
+          checkLoginStatus();
+          checkUserAccess();
       
-        // Функция, которая запускается при загрузке страницы
-        window.onload = () => {
-          checkLoginStatus(); // Проверка наличия токена и актуализация UI
-        };
-      
-        // Добавляем обработчик для кнопки выхода
-        const logoutButton = document.getElementById("logout-btn");
-        if (logoutButton) {
-          logoutButton.addEventListener("click", logout); // Если кнопка выхода существует, добавляем обработчик
-        }
-      
-        // Функция для обработки кнопок, если пользователь не авторизован
-        function checkAuthAndRedirect(event) {
-          const token = localStorage.getItem("auth_token"); // Проверка токена
-          if (!token) {
-            alert("Вы не авторизованы. Пожалуйста, выполните вход.");
-            window.location.href = "login.html"; // Перенаправление на страницу логина
-            event.preventDefault(); // Блокируем выполнение действия
+          // Добавляем обработчик для кнопки выхода, если она существует
+          const logoutBtn = document.getElementById("logout-btn");
+          if (logoutBtn) {
+            logoutBtn.addEventListener("click", logout);
           }
-        }
-      
-        // Добавление обработчиков для кнопок "Buy Now" и "Book Now"
-        const buyNowButtons = document.querySelectorAll(".btn-outline-secondary");
-        buyNowButtons.forEach(button => {
-          button.addEventListener("click", checkAuthAndRedirect);
-        });
-      
-        const bookNowButtons = document.querySelectorAll(".btn-outline-primary");
-        bookNowButtons.forEach(button => {
-          button.addEventListener("click", checkAuthAndRedirect);
         });
       </script>
+      
+      
       
       
       
