@@ -27,9 +27,9 @@ type User struct {
 	Name      string
 	Email     string `gorm:"unique"`
 	Password  string
-	Role      string
-	Verified  bool      `gorm:"default:false"`
-	OTP       string    `json:"otp,omitempty"`
+	Role      string // Роль пользователя (например, "User", "Admin")
+	Verified  bool   `gorm:"default:false"`
+	OTP       string `json:"otp,omitempty"`
 	OTPExpiry time.Time `json:"otp_expiry,omitempty"`
 }
 
@@ -86,6 +86,7 @@ func initDatabase() {
 	db.AutoMigrate(&User{}, &TempUser{})
 	log.Println("Database initialized successfully")
 }
+
 func rateLimitMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if !limiter.Allow() {
@@ -96,6 +97,7 @@ func rateLimitMiddleware(next http.Handler) http.Handler {
 		next.ServeHTTP(w, r)
 	})
 }
+
 // Генерация случайного кода
 func generateVerificationCode() string {
 	rand.Seed(uint64(time.Now().UnixNano())) // Инициализация генератора случайных чисел
@@ -191,7 +193,7 @@ func verifyCode(w http.ResponseWriter, r *http.Request) {
 		Name:      tempUser.Name,
 		Email:     tempUser.Email,
 		Password:  string(hashedPassword),
-		Role:      "User",
+		Role:      "User", // Для новых пользователей роль по умолчанию "User"
 		Verified:  true,
 	}
 
@@ -256,45 +258,46 @@ func login(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
-// Проверка OTP для входа
 func verifyOTP(w http.ResponseWriter, r *http.Request) {
 	var input struct {
-		Email string `json:"email"`
-		OTP   string `json:"otp"`
+	  Email string `json:"email"`
+	  OTP   string `json:"otp"`
 	}
-
+  
 	if err := json.NewDecoder(r.Body).Decode(&input); err != nil {
-		http.Error(w, "Invalid JSON format", http.StatusBadRequest)
-		return
+	  http.Error(w, `{"error": "Invalid JSON format"}`, http.StatusBadRequest)
+	  return
 	}
-
+  
 	var user User
 	if err := db.Where("email = ?", input.Email).First(&user).Error; err != nil {
-		http.Error(w, "User not found", http.StatusNotFound)
-		return
+	  http.Error(w, `{"error": "User not found"}`, http.StatusNotFound)
+	  return
 	}
-
+  
 	if user.OTP != input.OTP || time.Now().After(user.OTPExpiry) {
-		http.Error(w, "Invalid or expired OTP", http.StatusUnauthorized)
-		return
+	  http.Error(w, `{"error": "Invalid or expired OTP"}`, http.StatusUnauthorized)
+	  return
 	}
-
+  
 	// Генерация JWT токена
 	token, err := generateToken(user)
 	if err != nil {
-		http.Error(w, "Failed to generate token", http.StatusInternalServerError)
-		return
+	  http.Error(w, `{"error": "Failed to generate token"}`, http.StatusInternalServerError)
+	  return
 	}
-
+  
+	// Логирование успешного входа
 	writeLogToFile("info", fmt.Sprintf("Login successful for: %s", input.Email))
-
+  
+	// Ответ клиенту с токеном и ролью
+	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(map[string]string{
-		"message": "Login successful",
-		"token":   token,
-		"role":    user.Role,
+	  "message": "Login successful",
+	  "token":   token,
+	  "role":    user.Role,
 	})
-}
-
+  }
 // Генерация JWT токена
 func generateToken(user User) (string, error) {
 	claims := jwt.MapClaims{
@@ -379,3 +382,4 @@ func main() {
 	fmt.Println("Server running on http://localhost:8080")
 	http.ListenAndServe(":8080", handler)
 }
+	

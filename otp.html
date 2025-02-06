@@ -57,9 +57,9 @@
       <form id="otp-form">
         <div class="mb-3">
           <label for="otp" class="form-label">One-time password (OTP)</label>
-          <input id="otpinput" type="text" class="form-control" placeholder="Enter OTP" required>
+          <input id="otp" type="text" class="form-control" placeholder="Enter OTP" required>
         </div>
-        <button type="submit" id="otp" class="btn btn-primary w-100">Submit OTP</button>
+        <button type="submit" class="btn btn-primary w-100">Submit OTP</button>
       </form>
     </div>
 
@@ -86,10 +86,12 @@
             throw new Error(data.error || "OTP verification failed.");
           }
 
+          // Сохраняем токен в localStorage
+          localStorage.setItem("auth_token", data.token);
 
           // Проверка роли и перенаправление на соответствующую страницу
           if (data.role === "Admin") {
-            window.location.href = "admin.html";
+            window.location.href = "user.html";
             alert("Login successful!");
           } else if (data.role === "User") {
             window.location.href = "user.html";
