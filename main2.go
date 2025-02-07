@@ -13,6 +13,8 @@ import (
 	"github.com/rs/cors"
 	"github.com/sirupsen/logrus"
 
+	"github.com/gorilla/websocket"
+
 	"golang.org/x/crypto/bcrypt"
 	"golang.org/x/exp/rand"
 	"golang.org/x/time/rate"
@@ -21,13 +23,16 @@ import (
 	"gorm.io/gorm/logger"
 )
 
-// Структуры
+// =====================
+// Структуры для базы данных
+// =====================
+
 type User struct {
 	ID        uint   `gorm:"primaryKey"`
 	Name      string
 	Email     string `gorm:"unique"`
 	Password  string
-	Role      string // Роль пользователя (например, "User", "Admin")
+	Role      string // например, "User", "Admin"
 	Verified  bool   `gorm:"default:false"`
 	OTP       string `json:"otp,omitempty"`
 	OTPExpiry time.Time `json:"otp_expiry,omitempty"`
@@ -46,7 +51,10 @@ var (
 	limiter = rate.NewLimiter(1, 3)
 )
 
+// =====================
 // Логирование в файл JSON
+// =====================
+
 type LogEntry struct {
 	Timestamp time.Time `json:"timestamp"`
 	Level     string    `json:"level"`
@@ -73,7 +81,10 @@ func writeLogToFile(level, message string) {
 	}
 }
 
-// Подключение к базе данных
+// =====================
+// Инициализация базы данных
+// =====================
+
 func initDatabase() {
 	dsn := "postgres://postgres:postgres@localhost/gaming_club?sslmode=disable"
 	var err error
@@ -87,6 +98,10 @@ func initDatabase() {
 	log.Println("Database initialized successfully")
 }
 
+// =====================
+// Middleware: rate limiting
+// =====================
+
 func rateLimitMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if !limiter.Allow() {
@@ -98,10 +113,14 @@ func rateLimitMiddleware(next http.Handler) http.Handler {
 	})
 }
 
-// Генерация случайного кода
+// =====================
+// Функции для регистрации, верификации и логина
+// =====================
+
+// Генерация случайного кода подтверждения
 func generateVerificationCode() string {
-	rand.Seed(uint64(time.Now().UnixNano())) // Инициализация генератора случайных чисел
-	return fmt.Sprintf("%04d", rand.Intn(10000)) // Генерация кода из 4 цифр
+	rand.Seed(uint64(time.Now().UnixNano()))
+	return fmt.Sprintf("%04d", rand.Intn(10000))
 }
 
 // Отправка Email
@@ -112,7 +131,6 @@ func sendEmail(to, subject, message string) {
 
 	msg := fmt.Sprintf("From: mirasbeyse@gmail.com\nTo: %s\nSubject: %s\n\n%s", to, subject, message)
 
-	// Логирование перед отправкой письма
 	log.Printf("Sending email to %s with subject %s", to, subject)
 
 	err := smtp.SendMail(smtpHost+":"+smtpPort, auth, "mirasbeyse@gmail.com", []string{to}, []byte(msg))
@@ -139,10 +157,8 @@ func signUpHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Генерация уникального кода подтверждения
 	verificationCode := generateVerificationCode()
 
-	// Создаем временного пользователя в таблице temp_users
 	tempUser := TempUser{
 		Name:             user.Name,
 		Email:            user.Email,
@@ -150,19 +166,15 @@ func signUpHandler(w http.ResponseWriter, r *http.Request) {
 		VerificationCode: verificationCode,
 	}
 
-	// Сохраняем временного пользователя в базу данных
 	if err := db.Create(&tempUser).Error; err != nil {
 		writeLogToFile("error", fmt.Sprintf("Failed to create temp user in DB: %v", err))
 		http.Error(w, `{"error":"Failed to create temporary user"}`, http.StatusInternalServerError)
 		return
 	}
 
-	// Отправляем код подтверждения на email
 	go sendEmail(user.Email, "Verification Code", verificationCode)
 
 	writeLogToFile("info", fmt.Sprintf("Verification code sent to: %s", user.Email))
-
-	// Ответ клиенту
 	json.NewEncoder(w).Encode(map[string]string{"message": "Verification code sent"})
 }
 
@@ -180,38 +192,32 @@ func verifyCode(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var tempUser TempUser
-	// Ищем временного пользователя по email и verification_code
 	if err := db.Where("email = ? AND verification_code = ?", requestData.Email, requestData.Code).First(&tempUser).Error; err != nil {
 		writeLogToFile("error", fmt.Sprintf("Invalid verification code for email: %s", requestData.Email))
 		http.Error(w, `{"error":"Invalid verification code"}`, http.StatusNotFound)
 		return
 	}
 
-	// Хешируем пароль перед сохранением
 	hashedPassword, _ := bcrypt.GenerateFromPassword([]byte(tempUser.Password), bcrypt.DefaultCost)
 	user := User{
-		Name:      tempUser.Name,
-		Email:     tempUser.Email,
-		Password:  string(hashedPassword),
-		Role:      "User", // Для новых пользователей роль по умолчанию "User"
-		Verified:  true,
+		Name:     tempUser.Name,
+		Email:    tempUser.Email,
+		Password: string(hashedPassword),
+		Role:     "User",
+		Verified: true,
 	}
 
-	// Создаем нового пользователя
 	if err := db.Create(&user).Error; err != nil {
 		writeLogToFile("error", fmt.Sprintf("Failed to create verified user: %v", err))
 		http.Error(w, `{"error":"Failed to create verified user"}`, http.StatusInternalServerError)
 		return
 	}
 
-	// Удаляем временного пользователя
 	if err := db.Delete(&tempUser).Error; err != nil {
 		writeLogToFile("error", fmt.Sprintf("Failed to delete temp user: %v", err))
 	}
 
 	writeLogToFile("info", fmt.Sprintf("Email verified for: %s", requestData.Email))
-
-	// Ответ клиенту
 	json.NewEncoder(w).Encode(map[string]string{"message": "Email verified, you can login now."})
 }
 
@@ -243,7 +249,6 @@ func login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Генерация OTP для входа
 	otp := fmt.Sprintf("%06d", rand.Intn(1000000))
 	user.OTP = otp
 	user.OTPExpiry = time.Now().Add(5 * time.Minute)
@@ -252,7 +257,6 @@ func login(w http.ResponseWriter, r *http.Request) {
 	go sendEmail(user.Email, "Your OTP for login", otp)
 
 	writeLogToFile("info", fmt.Sprintf("OTP sent to: %s", user.Email))
-
 	json.NewEncoder(w).Encode(map[string]string{
 		"message": "OTP sent to your email.",
 	})
@@ -260,44 +264,41 @@ func login(w http.ResponseWriter, r *http.Request) {
 
 func verifyOTP(w http.ResponseWriter, r *http.Request) {
 	var input struct {
-	  Email string `json:"email"`
-	  OTP   string `json:"otp"`
+		Email string `json:"email"`
+		OTP   string `json:"otp"`
 	}
-  
+
 	if err := json.NewDecoder(r.Body).Decode(&input); err != nil {
-	  http.Error(w, `{"error": "Invalid JSON format"}`, http.StatusBadRequest)
-	  return
+		http.Error(w, `{"error": "Invalid JSON format"}`, http.StatusBadRequest)
+		return
 	}
-  
+
 	var user User
 	if err := db.Where("email = ?", input.Email).First(&user).Error; err != nil {
-	  http.Error(w, `{"error": "User not found"}`, http.StatusNotFound)
-	  return
+		http.Error(w, `{"error": "User not found"}`, http.StatusNotFound)
+		return
 	}
-  
+
 	if user.OTP != input.OTP || time.Now().After(user.OTPExpiry) {
-	  http.Error(w, `{"error": "Invalid or expired OTP"}`, http.StatusUnauthorized)
-	  return
+		http.Error(w, `{"error": "Invalid or expired OTP"}`, http.StatusUnauthorized)
+		return
 	}
-  
-	// Генерация JWT токена
+
 	token, err := generateToken(user)
 	if err != nil {
-	  http.Error(w, `{"error": "Failed to generate token"}`, http.StatusInternalServerError)
-	  return
+		http.Error(w, `{"error": "Failed to generate token"}`, http.StatusInternalServerError)
+		return
 	}
-  
-	// Логирование успешного входа
+
 	writeLogToFile("info", fmt.Sprintf("Login successful for: %s", input.Email))
-  
-	// Ответ клиенту с токеном и ролью
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(map[string]string{
-	  "message": "Login successful",
-	  "token":   token,
-	  "role":    user.Role,
+		"message": "Login successful",
+		"token":   token,
+		"role":    user.Role,
 	})
-  }
+}
+
 // Генерация JWT токена
 func generateToken(user User) (string, error) {
 	claims := jwt.MapClaims{
@@ -312,7 +313,6 @@ func generateToken(user User) (string, error) {
 // Проверка токена
 func validateToken(tokenString string) (*jwt.Token, error) {
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
-		// Проверка алгоритма подписи
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
 		}
@@ -321,47 +321,139 @@ func validateToken(tokenString string) (*jwt.Token, error) {
 	return token, err
 }
 
-// Middleware для защиты
+// Middleware для защиты (пример для админских маршрутов)
 func authMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		// Получаем токен из заголовков
 		tokenString := r.Header.Get("Authorization")
 		if tokenString == "" {
 			http.Error(w, "Missing token", http.StatusUnauthorized)
 			return
 		}
 
-		// Удаляем "Bearer " из заголовка токена
 		tokenString = tokenString[7:]
-
 		token, err := validateToken(tokenString)
 		if err != nil || !token.Valid {
 			http.Error(w, "Invalid token", http.StatusUnauthorized)
 			return
 		}
 
-		// Извлекаем роль из токена
 		claims := token.Claims.(jwt.MapClaims)
 		role := claims["role"].(string)
-
-		// Пример ограничения доступа для определенной роли (например, только для администраторов)
 		if role != "Admin" {
 			http.Error(w, "Access denied", http.StatusForbidden)
 			return
 		}
 
-		// Даем доступ к следующему хендлеру
 		next.ServeHTTP(w, r)
 	})
 }
 
-// Обработчик для админов
+// Пример защищённого маршрута для админов
 func adminHandler(w http.ResponseWriter, r *http.Request) {
-	// Логика для админов, например, доступ к панели управления.
 	json.NewEncoder(w).Encode(map[string]string{"message": "Welcome to the Admin panel"})
 }
 
-// Главная функция, запуск сервера
+// =====================
+// Реализация чата через WebSocket с разделением по ролям
+// =====================
+
+// Расширенная структура сообщения (добавлено поле SenderRole)
+type Message struct {
+	Username   string    `json:"username"`
+	Content    string    `json:"content"`
+	ChatID     string    `json:"chat_id"`
+	SenderRole string    `json:"sender_role"` // "client" или "admin"
+	Timestamp  time.Time `json:"timestamp"`
+}
+
+// Задаём почту, на которую будут приходить сообщения (укажите свой адрес)
+var adminEmail = "maksatkarzhaubaev91@gmail.com"
+
+// Для WebSocket‑подключений различаем по query-параметру
+var upgrader = websocket.Upgrader{
+	CheckOrigin: func(r *http.Request) bool { return true },
+}
+
+// Для хранения соединения клиента – сопоставляем chatID с соединением
+var clientConns = make(map[string]*websocket.Conn)
+
+// Для администратора (предполагается один активный админ)
+var adminConn *websocket.Conn
+
+// Обработчик WebSocket‑соединений
+func handleConnections(w http.ResponseWriter, r *http.Request) {
+	ws, err := upgrader.Upgrade(w, r, nil)
+	if err != nil {
+		log.Println("WebSocket upgrade error:", err)
+		return
+	}
+	// Получаем параметр role из URL
+	role := r.URL.Query().Get("role")
+	if role == "admin" {
+		adminConn = ws
+		log.Println("Admin connected via WebSocket")
+	} else {
+		// Для клиента получаем chat_id или генерируем новый
+		chatID := r.URL.Query().Get("chat_id")
+		if chatID == "" {
+			chatID = fmt.Sprintf("chat_%d", time.Now().UnixNano())
+		}
+		clientConns[chatID] = ws
+		// Отправляем клиенту его chat_id
+		ws.WriteJSON(map[string]string{"chat_id": chatID})
+		log.Printf("Client connected with chat_id=%s", chatID)
+	}
+
+	// Чтение сообщений из соединения
+	for {
+		var msg Message
+		err := ws.ReadJSON(&msg)
+		if err != nil {
+			log.Println("WebSocket read error:", err)
+			// При ошибке удаляем соединение
+			if role == "admin" {
+				adminConn = nil
+			} else {
+				delete(clientConns, msg.ChatID)
+			}
+			break
+		}
+		msg.Timestamp = time.Now()
+		msg.SenderRole = role
+
+		// *** Отладочная строка: выводим сообщение в лог ***
+		log.Printf("Received message from %s (chat_id: %s): %s", role, msg.ChatID, msg.Content)
+
+		// Если сообщение от клиента – пересылаем его админу и отправляем на почту
+		if role == "client" {
+			// Отправляем сообщение на почту (если задан адрес)
+			if adminEmail != "" {
+				sendEmail(adminEmail, "New Chat Message", fmt.Sprintf("From chat %s: %s", msg.ChatID, msg.Content))
+			}
+			if adminConn != nil {
+				if err := adminConn.WriteJSON(msg); err != nil {
+					log.Println("Error sending message to admin:", err)
+				}
+			} else {
+				log.Println("Admin not connected; message not forwarded.")
+			}
+		} else if role == "admin" {
+			// Если сообщение от администратора, пересылаем его конкретному клиенту по msg.ChatID
+			if client, ok := clientConns[msg.ChatID]; ok {
+				if err := client.WriteJSON(msg); err != nil {
+					log.Println("Error sending message to client:", err)
+				}
+			} else {
+				log.Printf("No client found with chat_id: %s", msg.ChatID)
+			}
+		}
+	}
+}
+
+// =====================
+// Главная функция: запуск сервера
+// =====================
+
 func main() {
 	initDatabase()
 	mux := http.NewServeMux()
@@ -372,14 +464,15 @@ func main() {
 	mux.HandleFunc("/login", login)
 	mux.HandleFunc("/verify-otp", verifyOTP)
 
-	// Защищенные маршруты, требующие авторизации и проверки роли
-	mux.Handle("/admin", authMiddleware(http.HandlerFunc(adminHandler))) // Административный интерфейс
+	// Пример защищённого маршрута для админов
+	mux.Handle("/admin", authMiddleware(http.HandlerFunc(adminHandler)))
 
-	// Применяем rate limiting middleware и CORS
+	// Маршрут для WebSocket-чата
+	mux.HandleFunc("/ws", handleConnections)
+
+	// Применяем middleware (rate limiting, CORS)
 	handler := rateLimitMiddleware(cors.Default().Handler(mux))
 
-	// Запуск сервера на порту 8080
 	fmt.Println("Server running on http://localhost:8080")
-	http.ListenAndServe(":8080", handler)
+	log.Fatal(http.ListenAndServe(":8080", handler))
 }
-	
