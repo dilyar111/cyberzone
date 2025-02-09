@@ -287,19 +287,56 @@
           chatWindow.style.display = 'none';
         });
     
-        function sendMessage() {
-          if (chatInput.value.trim() !== '') {
-            const message = {
-              username: "Пользователь", // Здесь можно подставить реальное имя
-              content: chatInput.value,
-              chat_id: chatID || ""
-            };
-            if (socket && socket.readyState === WebSocket.OPEN) {
-              socket.send(JSON.stringify(message));
+        function parseJwt(token) {
+    try {
+        const base64Url = token.split('.')[1]; 
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+
+        const decoded = JSON.parse(jsonPayload);
+        console.log("Decoded JWT:", decoded); // 🔍 Лог арқылы тексереміз
+        return decoded;
+    } catch (e) {
+        console.error("Invalid token:", e);
+        return null;
+    }
+}
+
+function sendMessage() {
+    if (chatInput.value.trim() !== '') {
+        const token = localStorage.getItem("auth_token"); 
+        let Name = "Аноним"; 
+        let email = "no-email@example.com"; 
+
+        if (token) {
+            const decoded = parseJwt(token);
+            if (decoded) {
+                console.log("JWT payload:", decoded); // 🔍 Лог арқылы тексереміз
+                Name = decoded.Name || decoded.username || decoded.full_name || "Аноним";
+                email = decoded.email || "no-email@example.com";
             }
-            chatInput.value = '';
-          }
         }
+
+        const message = {
+            Name: Name,
+            email: email,
+            content: chatInput.value,
+            chat_id: chatID || ""
+        };
+
+        console.log("Sending message:", message); // ✅ Қорытынды лог
+
+        if (socket && socket.readyState === WebSocket.OPEN) {
+            socket.send(JSON.stringify(message));
+        }
+
+        chatInput.value = '';
+    }
+}
+
+
     
         sendButton.addEventListener('click', sendMessage);
         chatInput.addEventListener('keypress', function(event) {

@@ -94,7 +94,7 @@ func initDatabase() {
 	if err != nil {
 		log.Fatal("Failed to connect to database:", err)
 	}
-	db.AutoMigrate(&User{}, &TempUser{})
+	db.AutoMigrate(&User{}, &TempUser{}, &Message{})
 	log.Println("Database initialized successfully")
 }
 
@@ -359,15 +359,50 @@ func adminHandler(w http.ResponseWriter, r *http.Request) {
 
 // Расширенная структура сообщения (добавлено поле SenderRole)
 type Message struct {
-	Username   string    `json:"username"`
-	Content    string    `json:"content"`
-	ChatID     string    `json:"chat_id"`
-	SenderRole string    `json:"sender_role"` // "client" или "admin"
-	Timestamp  time.Time `json:"timestamp"`
+	ID         uint      `gorm:"primaryKey"`
+	ChatID     string    `gorm:"not null"`
+	Username   string    `gorm:"not null"`
+	Content    string    `gorm:"not null"`
+	Timestamp  time.Time `gorm:"not null"`
+	Status     string    `gorm:"default:'active'"`
+	SenderRole string    `gorm:"not null"`
+	Email      string    `gorm:"not null"` // Жаңа өріс: пайдаланушының электрондық поштасы
 }
 
+
+func saveMessage(chatID, username, content, role, email string) {
+	msg := Message{
+		ChatID:     chatID,
+		Username:   username,
+		Content:    content,
+		Timestamp:  time.Now(),
+		Status:     "active",
+		SenderRole: role, // Рөлді беру
+		Email:      email, // Пайдаланушының электрондық поштасын беру
+	}
+
+	err := db.Create(&msg).Error
+	if err != nil {
+		log.Println("Error saving message:", err)
+	}
+}
+
+func sendMessageHistory(ws *websocket.Conn, chatID string) {
+	var messages []Message
+	if err := db.Where("chat_id = ?", chatID).Order("timestamp ASC").Find(&messages).Error; err != nil {
+		log.Println("Error retrieving message history:", err)
+		return
+	}
+
+	// Отправляем историю сообщений клиенту
+	for _, msg := range messages {
+		if err := ws.WriteJSON(msg); err != nil {
+			log.Println("Error sending message to client:", err)
+		}
+	}
+}
 // Задаём почту, на которую будут приходить сообщения (укажите свой адрес)
-var adminEmail = "maksatkarzhaubaev91@gmail.com"
+var adminEmail = "nurbibirahmanberdy@gmail.com"
 
 // Для WebSocket‑подключений различаем по query-параметру
 var upgrader = websocket.Upgrader{
@@ -380,28 +415,31 @@ var clientConns = make(map[string]*websocket.Conn)
 // Для администратора (предполагается один активный админ)
 var adminConn *websocket.Conn
 
-// Обработчик WebSocket‑соединений
 func handleConnections(w http.ResponseWriter, r *http.Request) {
 	ws, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
 		log.Println("WebSocket upgrade error:", err)
 		return
 	}
-	// Получаем параметр role из URL
+	defer ws.Close()
+
 	role := r.URL.Query().Get("role")
+	var chatID string
+
 	if role == "admin" {
 		adminConn = ws
 		log.Println("Admin connected via WebSocket")
 	} else {
-		// Для клиента получаем chat_id или генерируем новый
-		chatID := r.URL.Query().Get("chat_id")
+		chatID = r.URL.Query().Get("chat_id")
 		if chatID == "" {
-			chatID = fmt.Sprintf("chat_%d", time.Now().UnixNano())
+			chatID = fmt.Sprintf("chat_%d", time.Now().UnixNano()) // Новый chatID для клиента
 		}
 		clientConns[chatID] = ws
-		// Отправляем клиенту его chat_id
 		ws.WriteJSON(map[string]string{"chat_id": chatID})
 		log.Printf("Client connected with chat_id=%s", chatID)
+
+		// Отправляем историю сообщений клиенту
+		sendMessageHistory(ws, chatID)
 	}
 
 	// Чтение сообщений из соединения
@@ -410,7 +448,6 @@ func handleConnections(w http.ResponseWriter, r *http.Request) {
 		err := ws.ReadJSON(&msg)
 		if err != nil {
 			log.Println("WebSocket read error:", err)
-			// При ошибке удаляем соединение
 			if role == "admin" {
 				adminConn = nil
 			} else {
@@ -418,13 +455,21 @@ func handleConnections(w http.ResponseWriter, r *http.Request) {
 			}
 			break
 		}
+	
+		// ЛОГ: Хабарламаның нақты мәндері қандай екенін көрейік
+		log.Printf("DEBUG: Received message -> Username: %s, Email: %s, Content: %s, Role: %s", 
+			msg.Username, msg.Email, msg.Content, role)
+	
+		if msg.Username == "" || msg.Email == "" {
+			log.Println("WARNING: Username or Email is EMPTY!")
+		}
+	
 		msg.Timestamp = time.Now()
 		msg.SenderRole = role
-
-		// *** Отладочная строка: выводим сообщение в лог ***
-		log.Printf("Received message from %s (chat_id: %s): %s", role, msg.ChatID, msg.Content)
-
-		// Если сообщение от клиента – пересылаем его админу и отправляем на почту
+	
+		saveMessage(chatID, msg.Username, msg.Content, role, msg.Email)
+	
+		// Хабарламаны басқа тарапқа жіберу
 		if role == "client" {
 			// Отправляем сообщение на почту (если задан адрес)
 			if adminEmail != "" {
@@ -438,7 +483,6 @@ func handleConnections(w http.ResponseWriter, r *http.Request) {
 				log.Println("Admin not connected; message not forwarded.")
 			}
 		} else if role == "admin" {
-			// Если сообщение от администратора, пересылаем его конкретному клиенту по msg.ChatID
 			if client, ok := clientConns[msg.ChatID]; ok {
 				if err := client.WriteJSON(msg); err != nil {
 					log.Println("Error sending message to client:", err)
@@ -448,7 +492,8 @@ func handleConnections(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	}
-}
+}	
+
 
 // =====================
 // Главная функция: запуск сервера
