@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BROTHERS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      body, header, nav, a {
+        font-family: 'Orbitron', sans-serif;
+      }
+      body {
+        background: linear-gradient(135deg, #000000, #FFD700);
+        color: #f8f9fa;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      header {
+        background: rgba(0, 0, 0, 0.8);
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+      }
+      header a {
+        color: #FFD700;
+        transition: color 0.3s;
+      }
+      header a:hover {
+        color: #ffffff;
+      }
+      .dropdown-menu {
+        background-color: #1a1a1a;
+        border: none;
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+      }
+      .dropdown-item {
+        color: #FFD700;
+        font-weight: bold;
+      }
+      .dropdown-item:hover {
+        background-color: rgba(255, 215, 0, 0.2);
+        color: #FFD700;
+      }
+      .dropdown-toggle::after {
+        display: none;
+      }
+      .profile-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #FFD700;
+        display: inline-block;
+        text-align: center;
+        line-height: 40px;
+        color: #000;
+        font-weight: bold;
+        font-size: 1rem;
+      }
+      /* Стили виджета чата */
+      .chat-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        background: #007bff;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 50px;
+        font-size: 24px;
+        color: #fff;
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        z-index: 1000;
+      }
+      .chat-window {
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        width: 300px;
+        height: 400px;
+        background: #fff;
+        border: 1px solid #ccc;
+        display: none;
+        flex-direction: column;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        z-index: 1000;
+      }
+      .chat-window-header {
+        background: #007bff;
+        color: #fff;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .chat-messages {
+        flex: 1;
+        padding: 10px;
+        overflow-y: auto;
+        border-bottom: 1px solid #ccc;
+      }
+      .chat-input {
+        display: flex;
+        align-items: center;
+      }
+      .chat-input input {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-top: 1px solid #ccc;
+      }
+      .chat-input button {
+        flex: 0 0 auto;
+        padding: 10px 15px;
+        border: none;
+        background: #007bff;
+        color: #fff;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="py-3">
+      <div class="container d-flex justify-content-between align-items-center">
+        <a href="#" class="text-decoration-none fw-bold">
+          <img src="./photos/logo0.png" alt="Logo" width="150">
+        </a>
+        <nav class="d-flex justify-content-around w-50">
+          <a id="home-link" class="text-decoration-none" href="main.html">Home</a>
+          <a id="users-link" class="text-decoration-none" href="users_chek.html">Users</a>
+          <a href="devices.html" class="text-decoration-none">Devices</a>
+          <a href="prices.html" class="text-decoration-none">Price</a>
+          <a href="vip.html" class="text-decoration-none">VIP rooms</a>
+          <a href="#" class="text-decoration-none">Contact</a>
+        </nav>
+        <div class="dropdown">
+          <a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="profile-icon">P</div>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" href="profile.html">Profile</a></li>
+            <li><a class="dropdown-item" href="main.html">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <!-- Основное содержимое страницы -->
+      <!-- ... -->
+
+      <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 Company, Inc</p>
+        <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+          <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+        </a>
+        <ul class="nav col-md-4 justify-content-end">
+          <li class="nav-item"><a href="https://www.instagram.com/brothers_astana/" class="nav-link px-2 text-body-secondary">Instagram</a></li>
+          <li class="nav-item"><a href="https://www.tiktok.com/@brothers_astana01?_t=8sDlm00mjYM&_r=1" class="nav-link px-2 text-body-secondary">TikTok</a></li>
+          <li class="nav-item"><a href="https://2gis.kz/astana/search/Brothers%2C%20компьютерный%20клуб/firm/70000001037713195/71.442558%2C51.094322" class="nav-link px-2 text-body-secondary">2Gis</a></li>
+        </ul>
+      </footer>
+    </div>
+
+    <!-- Виджет чата -->
+    <div class="chat-button" id="chatButton">&#128172;</div>
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-window-header">
+        <span>Support Chat</span>
+        <button id="closeChat" style="border: none; background: transparent; color: #fff; font-size: 20px;">&times;</button>
+      </div>
+      <div class="chat-messages" id="chatMessages"></div>
+      <div class="chat-input">
+        <input type="text" id="chatInput" placeholder="Введите сообщение...">
+        <button id="sendButton">Отправить</button>
+      </div>
+    </div>
+
+    <!-- Скрипты для авторизации и работы с чатом -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        // Функции проверки авторизации (пример)
+        function checkLoginStatus() {
+          const token = localStorage.getItem("auth_token");
+          if (token) {
+            const decoded = JSON.parse(atob(token.split('.')[1]));
+            const homeLink = document.getElementById("home-link");
+            if (homeLink) {
+              homeLink.href = decoded.role === "Admin" ? "admin.html" : "user.html"; 
+            }
+            const usersLink = document.getElementById("users-link");
+            if (usersLink) {
+              usersLink.style.display = "inline";
+            }
+            const profileIcon = document.querySelector(".profile-icon");
+            if (profileIcon) {
+              profileIcon.innerText = decoded.name ? decoded.name.charAt(0) : "U";
+            }
+            checkTokenExpiry(decoded);
+          } else {
+            window.location.href = "login.html";
+          }
+        }
+    
+        function checkTokenExpiry(decoded) {
+          const currentTime = Math.floor(Date.now() / 1000);
+          if (decoded.exp < currentTime) {
+            alert("Ваша сессия истекла. Пожалуйста, войдите снова.");
+            localStorage.removeItem("auth_token");
+            window.location.href = "login.html";
+          }
+        }
+    
+        function checkUserAccess() {
+          const token = localStorage.getItem("auth_token");
+          if (token) {
+            const decoded = JSON.parse(atob(token.split('.')[1]));
+            if (decoded.role !== "Admin" && window.location.pathname.includes("users_chek.html")) {
+              alert("У вас нет доступа к этой странице.");
+            }
+          }
+        }
+    
+        function logout() {
+          localStorage.removeItem("auth_token");
+          window.location.href = "login.html";
+        }
+    
+        checkLoginStatus();
+        checkUserAccess();
+    
+        const logoutBtn = document.getElementById("logout-btn");
+        if (logoutBtn) {
+          logoutBtn.addEventListener("click", logout);
+        }
+    
+        // Чат: реализация WebSocket-подключения
+        let chatID = localStorage.getItem("chat_id"); // сохраняем уникальный id чата
+        let socket;
+    
+        function connectChat() {
+          let wsUrl = 'ws://localhost:8080/ws?role=client';
+          if (chatID) {
+            wsUrl += '&chat_id=' + chatID;
+          }
+          socket = new WebSocket(wsUrl);
+          socket.onmessage = function(event) {
+            try {
+              const msg = JSON.parse(event.data);
+              if (msg.chat_id && !chatID) {
+                chatID = msg.chat_id;
+                localStorage.setItem("chat_id", chatID);
+              } else {
+                const messageElement = document.createElement('div');
+                messageElement.textContent = msg.username + ": " + msg.content;
+                document.getElementById('chatMessages').appendChild(messageElement);
+                document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+              }
+            } catch(e) {
+              console.error("Error parsing message", e);
+            }
+          };
+        }
+    
+        const chatButton = document.getElementById('chatButton');
+        const chatWindow = document.getElementById('chatWindow');
+        const closeChat = document.getElementById('closeChat');
+        const chatInput = document.getElementById('chatInput');
+        const sendButton = document.getElementById('sendButton');
+    
+        // Переключение окна чата по клику на кнопку-иконку
+        chatButton.addEventListener('click', () => {
+          if (chatWindow.style.display === 'none' || chatWindow.style.display === '') {
+            chatWindow.style.display = 'flex';
+            if (!socket) {
+              connectChat();
+            }
+          } else {
+            chatWindow.style.display = 'none';
+          }
+        });
+    
+        // Кнопка закрытия окна чата
+        closeChat.addEventListener('click', () => {
+          chatWindow.style.display = 'none';
+        });
+    
+        function parseJwt(token) {
+    try {
+        const base64Url = token.split('.')[1]; 
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+
+        const decoded = JSON.parse(jsonPayload);
+        console.log("Decoded JWT:", decoded); // 🔍 Лог арқылы тексереміз
+        return decoded;
+    } catch (e) {
+        console.error("Invalid token:", e);
+        return null;
+    }
+}
+
+function sendMessage() {
+    if (chatInput.value.trim() !== '') {
+        const token = localStorage.getItem("auth_token"); 
+        let Name = "Аноним"; 
+        let email = "no-email@example.com"; 
+
+        if (token) {
+            const decoded = parseJwt(token);
+            if (decoded) {
+                console.log("JWT payload:", decoded); // 🔍 Лог арқылы тексереміз
+                Name = decoded.Name || decoded.username || decoded.full_name || "Аноним";
+                email = decoded.email || "no-email@example.com";
+            }
+        }
+
+        const message = {
+            Name: Name,
+            email: email,
+            content: chatInput.value,
+            chat_id: chatID || ""
+        };
+
+        console.log("Sending message:", message); // ✅ Қорытынды лог
+
+        if (socket && socket.readyState === WebSocket.OPEN) {
+            socket.send(JSON.stringify(message));
+        }
+
+        chatInput.value = '';
+    }
+}
+
+
+    
+        sendButton.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', function(event) {
+          if (event.key === 'Enter') {
+            sendMessage();
+          }
+        });
+      });
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

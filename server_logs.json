@@ -1,0 +1,1540 @@
+{"action":"initDatabase","level":"info","msg":"Database initialized successfully","time":"2025-01-08T17:51:28+05:00"}
+{"action":"startServer","level":"info","msg":"Server started on port 8080","time":"2025-01-08T17:51:28+05:00"}
+{"action":"sortUsers","level":"info","msg":"Sorting users","sort":"name","time":"2025-01-08T17:51:52+05:00"}
+{"action":"fetchUsers","count":6,"level":"info","msg":"Users fetched successfully","status":"success","time":"2025-01-08T17:51:52+05:00"}
+{"action":"sortUsers","level":"info","msg":"Sorting users","sort":"name","time":"2025-01-08T17:52:11+05:00"}
+{"action":"fetchUsers","count":6,"level":"info","msg":"Users fetched successfully","status":"success","time":"2025-01-08T17:52:11+05:00"}
+{"action":"initDatabase","level":"info","msg":"Database initialized successfully","time":"2025-01-08T17:52:56+05:00"}
+{"action":"startServer","level":"info","msg":"Server started on port 8080","time":"2025-01-08T17:52:56+05:00"}
+{"action":"sortUsers","level":"info","msg":"Sorting users","sort":"name","time":"2025-01-08T17:53:07+05:00"}
+{"action":"fetchUsers","count":6,"level":"info","msg":"Users fetched successfully","status":"success","time":"2025-01-08T17:53:07+05:00"}
+{"action":"sortUsers","level":"info","msg":"Sorting users","sort":"email","time":"2025-01-08T17:53:09+05:00"}
+{"action":"fetchUsers","count":6,"level":"info","msg":"Users fetched successfully","status":"success","time":"2025-01-08T17:53:09+05:00"}
+{"action":"paginateUsers","level":"info","limit":2,"msg":"Paginating users","page":"2","time":"2025-01-08T17:55:51+05:00"}
+{"action":"fetchUsers","count":2,"level":"info","msg":"Users fetched successfully","status":"success","time":"2025-01-08T17:55:51+05:00"}
+{"action":"initDatabase","level":"info","msg":"Database initialized successfully","time":"2025-01-08T18:16:40+05:00"}
+{"action":"startServer","level":"info","msg":"Server started on port 8080","time":"2025-01-08T18:16:40+05:00"}
+{"action":"sendEmail","error":"Invalid input","level":"error","msg":"Failed to decode email request","status":"failed","time":"2025-01-08T18:16:47+05:00"}
+{"action":"sendEmail","level":"info","msg":"Emails sent successfully","time":"2025-01-08T18:16:59+05:00"}
+{"action":"initDatabase","level":"info","msg":"Database initialized successfully","time":"2025-01-08T18:46:06+05:00"}
+{"action":"startServer","level":"info","msg":"Server started on port 8080","time":"2025-01-08T18:46:06+05:00"}
+{"action":"initDatabase","level":"info","msg":"Database initialized successfully","time":"2025-01-08T18:48:22+05:00"}
+{"action":"startServer","level":"info","msg":"Server started on port 8080","time":"2025-01-08T18:48:22+05:00"}
+{"action":"sendEmail","error":"dial tcp: lookup smtp.example.com: no such host","level":"error","msg":"Failed to send email","recipient":"","status":"failed","time":"2025-01-08T18:50:16+05:00"}
+{"action":"sendEmail","error":"dial tcp: lookup smtp.example.com: no such host","level":"error","msg":"Failed to send email","recipient":"","status":"failed","time":"2025-01-08T18:51:03+05:00"}
+{"action":"sendEmail","error":"dial tcp: lookup smtp.example.com: no such host","level":"error","msg":"Failed to send email","recipient":"you","status":"failed","time":"2025-01-08T18:51:38+05:00"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-08T18:57:40+05:00"}
+{"action":"sendEmail","error":"dial tcp: lookup smtp.example.com: no such host","level":"error","msg":"Failed to send email","recipient":"you","status":"failed","time":"2025-01-08T18:58:12+05:00"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-08T19:16:29+05:00"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-08T19:19:48+05:00"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-08T19:27:03+05:00"}
+{"level":"info","msg":"Server started on port 8080","time":"2025-01-08T19:27:03+05:00"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-08T19:29:35+05:00"}
+{"level":"info","msg":"Server started on port 8080","time":"2025-01-08T19:29:35+05:00"}
+{"error":"gomail: could not send email 1: gomail: invalid address \"\": mail: no address","level":"error","msg":"Failed to send email","recipient":"","time":"2025-01-08T19:30:36+05:00"}
+{"error":"gomail: could not send email 1: gomail: invalid address \"you\": mail: missing '@' or angle-addr","level":"error","msg":"Failed to send email","recipient":"you","time":"2025-01-08T19:30:38+05:00"}
+{"action":"rateLimit","level":"warning","message":"Rate limit exceeded","msg":"Too many requests","status":"failed","time":"2025-01-08T19:30:38+05:00"}
+{"action":"rateLimit","level":"warning","message":"Rate limit exceeded","msg":"Too many requests","status":"failed","time":"2025-01-08T19:30:39+05:00"}
+{"error":"gomail: could not send email 1: gomail: invalid address \"you\": mail: missing '@' or angle-addr","level":"error","msg":"Failed to send email","recipient":"you","time":"2025-01-08T19:30:40+05:00"}
+{"action":"rateLimit","level":"warning","message":"Rate limit exceeded","msg":"Too many requests","status":"failed","time":"2025-01-08T19:30:40+05:00"}
+{"action":"rateLimit","level":"warning","message":"Rate limit exceeded","msg":"Too many requests","status":"failed","time":"2025-01-08T19:30:40+05:00"}
+{"action":"rateLimit","level":"warning","message":"Rate limit exceeded","msg":"Too many requests","status":"failed","time":"2025-01-08T19:30:40+05:00"}
+{"error":"gomail: could not send email 1: gomail: invalid address \"you\": mail: missing '@' or angle-addr","level":"error","msg":"Failed to send email","recipient":"you","time":"2025-01-08T19:30:41+05:00"}
+{"action":"rateLimit","level":"warning","message":"Rate limit exceeded","msg":"Too many requests","status":"failed","time":"2025-01-08T19:30:41+05:00"}
+{"action":"rateLimit","level":"warning","message":"Rate limit exceeded","msg":"Too many requests","status":"failed","time":"2025-01-08T19:30:42+05:00"}
+{"error":"gomail: could not send email 1: gomail: invalid address \"you\": mail: missing '@' or angle-addr","level":"error","msg":"Failed to send email","recipient":"you","time":"2025-01-08T19:30:42+05:00"}
+{"action":"rateLimit","level":"warning","message":"Rate limit exceeded","msg":"Too many requests","status":"failed","time":"2025-01-08T19:30:52+05:00"}
+{"error":"gomail: could not send email 1: gomail: invalid address \"you\": mail: missing '@' or angle-addr","level":"error","msg":"Failed to send email","recipient":"you","time":"2025-01-08T19:30:52+05:00"}
+{"action":"rateLimit","level":"warning","message":"Rate limit exceeded","msg":"Too many requests","status":"failed","time":"2025-01-08T19:31:42+05:00"}
+{"action":"rateLimit","level":"warning","message":"Rate limit exceeded","msg":"Too many requests","status":"failed","time":"2025-01-08T19:31:42+05:00"}
+{"action":"rateLimit","level":"warning","message":"Rate limit exceeded","msg":"Too many requests","status":"failed","time":"2025-01-08T19:31:42+05:00"}
+{"error":"gomail: could not send email 1: gomail: invalid address \"you\": mail: missing '@' or angle-addr","level":"error","msg":"Failed to send email","recipient":"you","time":"2025-01-08T19:31:43+05:00"}
+{"action":"rateLimit","level":"warning","message":"Rate limit exceeded","msg":"Too many requests","status":"failed","time":"2025-01-08T19:31:43+05:00"}
+{"action":"rateLimit","level":"warning","message":"Rate limit exceeded","msg":"Too many requests","status":"failed","time":"2025-01-08T19:31:44+05:00"}
+{"error":"gomail: could not send email 1: gomail: invalid address \"you\": mail: missing '@' or angle-addr","level":"error","msg":"Failed to send email","recipient":"you","time":"2025-01-08T19:31:45+05:00"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-08T19:33:43+05:00"}
+{"level":"info","msg":"Server started on port 8080","time":"2025-01-08T19:33:43+05:00"}
+{"action":"rateLimit","level":"warning","message":"Rate limit exceeded","msg":"Too many requests","status":"failed","time":"2025-01-08T19:34:20+05:00"}
+{"error":"gomail: could not send email 1: gomail: invalid address \"you\": mail: missing '@' or angle-addr","level":"error","msg":"Failed to send email","recipient":"you","time":"2025-01-08T19:34:20+05:00"}
+{"action":"rateLimit","level":"warning","message":"Rate limit exceeded","msg":"Too many requests","status":"failed","time":"2025-01-08T19:34:20+05:00"}
+{"action":"rateLimit","level":"warning","message":"Rate limit exceeded","msg":"Too many requests","status":"failed","time":"2025-01-08T19:34:27+05:00"}
+{"action":"rateLimit","level":"warning","message":"Rate limit exceeded","msg":"Too many requests","status":"failed","time":"2025-01-08T19:34:27+05:00"}
+{"action":"rateLimit","level":"warning","message":"Rate limit exceeded","msg":"Too many requests","status":"failed","time":"2025-01-08T19:34:28+05:00"}
+{"action":"rateLimit","level":"warning","message":"Rate limit exceeded","msg":"Too many requests","status":"failed","time":"2025-01-08T19:34:28+05:00"}
+{"action":"rateLimit","level":"warning","message":"Rate limit exceeded","msg":"Too many requests","status":"failed","time":"2025-01-08T19:34:28+05:00"}
+{"action":"rateLimit","level":"warning","message":"Rate limit exceeded","msg":"Too many requests","status":"failed","time":"2025-01-08T19:34:29+05:00"}
+{"action":"rateLimit","level":"warning","message":"Rate limit exceeded","msg":"Too many requests","status":"failed","time":"2025-01-08T19:34:29+05:00"}
+{"action":"rateLimit","level":"warning","message":"Rate limit exceeded","msg":"Too many requests","status":"failed","time":"2025-01-08T19:34:29+05:00"}
+{"level":"info","msg":"Emails sent successfully","time":"2025-01-08T19:34:29+05:00"}
+{"level":"info","msg":"Emails sent successfully","time":"2025-01-08T19:34:30+05:00"}
+{"level":"info","msg":"Emails sent successfully","time":"2025-01-08T19:34:32+05:00"}
+{"level":"info","msg":"Emails sent successfully","time":"2025-01-08T19:34:50+05:00"}
+{"level":"info","msg":"Emails sent successfully","time":"2025-01-08T19:35:15+05:00"}
+{"action":"rateLimit","level":"warning","message":"Rate limit exceeded","msg":"Too many requests","status":"failed","time":"2025-01-08T19:35:18+05:00"}
+{"action":"rateLimit","level":"warning","message":"Rate limit exceeded","msg":"Too many requests","status":"failed","time":"2025-01-08T19:35:18+05:00"}
+{"action":"rateLimit","level":"warning","message":"Rate limit exceeded","msg":"Too many requests","status":"failed","time":"2025-01-08T19:35:19+05:00"}
+{"action":"rateLimit","level":"warning","message":"Rate limit exceeded","msg":"Too many requests","status":"failed","time":"2025-01-08T19:35:19+05:00"}
+{"action":"rateLimit","level":"warning","message":"Rate limit exceeded","msg":"Too many requests","status":"failed","time":"2025-01-08T19:35:19+05:00"}
+{"action":"rateLimit","level":"warning","message":"Rate limit exceeded","msg":"Too many requests","status":"failed","time":"2025-01-08T19:35:19+05:00"}
+{"level":"info","msg":"Emails sent successfully","time":"2025-01-08T19:35:20+05:00"}
+{"level":"info","msg":"Emails sent successfully","time":"2025-01-08T19:35:21+05:00"}
+{"level":"info","msg":"Emails sent successfully","time":"2025-01-08T19:35:23+05:00"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-08T19:37:02+05:00"}
+{"level":"info","msg":"Server started on port 8080","time":"2025-01-08T19:37:02+05:00"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-08T19:37:45+05:00"}
+{"level":"info","msg":"Server started on port 8080","time":"2025-01-08T19:37:45+05:00"}
+{"level":"info","msg":"Emails sent successfully","time":"2025-01-08T19:38:01+05:00"}
+{"level":"info","msg":"Emails sent successfully","time":"2025-01-08T19:41:46+05:00"}
+{"level":"info","msg":"Emails sent successfully","time":"2025-01-08T19:43:47+05:00"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-08T19:51:52+05:00"}
+{"level":"info","msg":"Server started on port 8080","time":"2025-01-08T19:51:52+05:00"}
+{"error":"gomail: could not send email 1: gomail: invalid address \"\": mail: no address","level":"error","msg":"Failed to send email","recipient":"","time":"2025-01-08T19:52:54+05:00"}
+{"level":"info","msg":"Emails sent successfully","time":"2025-01-08T19:53:11+05:00"}
+{"level":"info","msg":"Emails sent successfully","time":"2025-01-08T19:53:36+05:00"}
+{"level":"info","msg":"Emails sent successfully","time":"2025-01-08T19:54:24+05:00"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-08T19:55:41+05:00"}
+{"level":"info","msg":"Server started on port 8080","time":"2025-01-08T19:55:41+05:00"}
+{"level":"info","msg":"Emails sent successfully","time":"2025-01-08T19:56:24+05:00"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-08T19:59:03+05:00"}
+{"level":"info","msg":"Server started on port 8080","time":"2025-01-08T19:59:03+05:00"}
+{"error":"gomail: could not send email 1: gomail: invalid address \"\": mail: no address","level":"error","msg":"Failed to send email","recipient":"","time":"2025-01-08T20:00:05+05:00"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-08T20:00:44+05:00"}
+{"level":"info","msg":"Server started on port 8080","time":"2025-01-08T20:00:44+05:00"}
+{"level":"info","msg":"Emails sent successfully","time":"2025-01-08T20:01:33+05:00"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-08T20:03:59+05:00"}
+{"level":"info","msg":"Server started on port 8080","time":"2025-01-08T20:03:59+05:00"}
+{"level":"info","msg":"Emails sent successfully","time":"2025-01-08T20:04:32+05:00"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-08T20:06:52+05:00"}
+{"level":"info","msg":"Server started on port 8080","time":"2025-01-08T20:06:52+05:00"}
+{"error":"gomail: could not send email 1: open /path/to/uploaded/image: no such file or directory","level":"error","msg":"Failed to send email","recipient":"231645@astanait.edu.kz","time":"2025-01-08T20:07:29+05:00"}
+{"error":"gomail: could not send email 1: open /path/to/uploaded/image: no such file or directory","level":"error","msg":"Failed to send email","recipient":"231645@astanait.edu.kz","time":"2025-01-08T20:07:35+05:00"}
+{"action":"rateLimit","level":"warning","message":"Rate limit exceeded","msg":"Too many requests","status":"failed","time":"2025-01-08T20:07:37+05:00"}
+{"error":"gomail: could not send email 1: open /path/to/uploaded/image: no such file or directory","level":"error","msg":"Failed to send email","recipient":"231645@astanait.edu.kz","time":"2025-01-08T20:07:38+05:00"}
+{"error":"gomail: could not send email 1: open /path/to/uploaded/image: no such file or directory","level":"error","msg":"Failed to send email","recipient":"231645@astanait.edu.kz","time":"2025-01-08T20:12:40+05:00"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-08T20:24:21+05:00"}
+{"level":"info","msg":"Server started on port 8080","time":"2025-01-08T20:24:21+05:00"}
+{"error":"EOF","level":"error","msg":"Failed to parse email request","time":"2025-01-08T20:25:13+05:00"}
+{"error":"http: no such file","level":"error","msg":"Failed to extract file from form","time":"2025-01-08T20:25:21+05:00"}
+{"error":"EOF","level":"error","msg":"Failed to parse email request","time":"2025-01-08T20:25:46+05:00"}
+{"error":"EOF","level":"error","msg":"Failed to parse email request","time":"2025-01-08T20:26:45+05:00"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-08T20:29:52+05:00"}
+{"level":"info","msg":"Server started on port 8080","time":"2025-01-08T20:29:52+05:00"}
+{"error":"EOF","level":"error","msg":"Failed to parse email request","time":"2025-01-08T20:30:08+05:00"}
+{"error":"EOF","level":"error","msg":"Failed to parse email request","time":"2025-01-08T20:30:21+05:00"}
+{"error":"EOF","level":"error","msg":"Failed to parse email request","time":"2025-01-08T20:31:34+05:00"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-08T20:32:04+05:00"}
+{"level":"info","msg":"Server started on port 8080","time":"2025-01-08T20:32:04+05:00"}
+{"error":"EOF","level":"error","msg":"Failed to parse email request","time":"2025-01-08T20:32:23+05:00"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-08T20:34:41+05:00"}
+{"level":"info","msg":"Server started on port 8080","time":"2025-01-08T20:34:41+05:00"}
+{"error":"EOF","level":"error","msg":"Failed to parse email request","time":"2025-01-08T20:34:58+05:00"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-08T20:41:45+05:00"}
+{"level":"info","msg":"Server started on port 8080","time":"2025-01-08T20:41:45+05:00"}
+{"error":"EOF","level":"error","msg":"Failed to parse email request","time":"2025-01-08T20:41:57+05:00"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-09T18:39:49+05:00"}
+{"level":"info","msg":"Server started on port 8080","time":"2025-01-09T18:39:49+05:00"}
+{"error":"EOF","level":"error","msg":"Failed to parse email request","time":"2025-01-09T18:40:18+05:00"}
+{"error":"EOF","level":"error","msg":"Failed to parse email request","time":"2025-01-09T18:41:17+05:00"}
+{"error":"EOF","level":"error","msg":"Failed to parse email request","time":"2025-01-09T18:41:18+05:00"}
+{"error":"EOF","level":"error","msg":"Failed to parse email request","time":"2025-01-09T18:41:19+05:00"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-09T18:42:12+05:00"}
+{"level":"info","msg":"Server started on port 8080","time":"2025-01-09T18:42:12+05:00"}
+{"error":"EOF","level":"error","msg":"Failed to parse email request","time":"2025-01-09T18:42:30+05:00"}
+{"error":"EOF","level":"error","msg":"Failed to parse email request","time":"2025-01-09T18:42:38+05:00"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-22T16:57:54+05:00"}
+{"level":"info","msg":"Server started on port 8080","time":"2025-01-22T16:57:54+05:00"}
+{"error":"request Content-Type isn't multipart/form-data","level":"error","msg":"Failed to parse form","time":"2025-01-22T16:58:29+05:00"}
+2025/01/23 02:14:50 Database initialized successfully
+2025/01/23 02:14:50 Server running on http://localhost:8080
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-23T02:19:33+0500"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-23T02:19:33+0500"}
+{"level":"info","msg":"Executing query: SELECT id, name, email FROM users WHERE name LIKE '%Nabi%' LIMIT 10 OFFSET 0","time":"2025-01-23T02:19:44+0500"}
+{"level":"info","msg":"Data retrieved successfully","time":"2025-01-23T02:19:44+0500"}
+{"level":"info","msg":"Executing query: SELECT id, name, email FROM users ORDER BY id LIMIT 10 OFFSET 0","time":"2025-01-23T02:20:08+0500"}
+{"level":"info","msg":"Data retrieved successfully","time":"2025-01-23T02:20:08+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-23T02:22:20+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-23T03:03:10+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-23T03:06:24+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-23T03:20:31+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T03:21:59+0500"}
+{"level":"error","msg":"Failed to create user during Sign Up","time":"2025-01-23T03:21:59+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T03:22:07+0500"}
+{"level":"error","msg":"Failed to create user during Sign Up","time":"2025-01-23T03:22:07+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T03:22:20+0500"}
+{"level":"error","msg":"Failed to create user during Sign Up","time":"2025-01-23T03:22:20+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T03:22:47+0500"}
+{"level":"info","msg":"User signed up successfully: {25 RNN jne@gmail.com}","time":"2025-01-23T03:22:47+0500"}
+{"level":"info","msg":"Received Login request","time":"2025-01-23T03:23:11+0500"}
+{"level":"info","msg":"User logged in successfully: {25 RNN jne@gmail.com}","time":"2025-01-23T03:23:11+0500"}
+{"level":"info","msg":"Received Login request","time":"2025-01-23T03:23:21+0500"}
+{"level":"info","msg":"User logged in successfully: {25 RNN jne@gmail.com}","time":"2025-01-23T03:23:21+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-23T03:48:09+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T03:49:40+0500"}
+{"level":"error","msg":"Missing required fields in Sign Up","time":"2025-01-23T03:49:40+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T03:49:58+0500"}
+{"level":"info","msg":"User signed up successfully: {26 Nabi nabibi@gmail.com 12345 Admin}","time":"2025-01-23T03:49:58+0500"}
+{"level":"error","msg":"Missing id parameter in getUserHandler","time":"2025-01-23T03:50:24+0500"}
+{"level":"error","msg":"Missing id parameter in getUserHandler","time":"2025-01-23T03:50:51+0500"}
+{"level":"error","msg":"Missing id parameter in getUserHandler","time":"2025-01-23T03:50:55+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T03:54:11+0500"}
+{"level":"error","msg":"Missing required fields in Sign Up","time":"2025-01-23T03:54:11+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T03:54:20+0500"}
+{"level":"error","msg":"Missing required fields in Sign Up","time":"2025-01-23T03:54:20+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T03:54:27+0500"}
+{"level":"error","msg":"Invalid role in Sign Up","time":"2025-01-23T03:54:27+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T03:54:34+0500"}
+{"level":"info","msg":"User signed up successfully: {27 Nabi j@example.com password123 User}","time":"2025-01-23T03:54:34+0500"}
+{"level":"info","msg":"Received Login request","time":"2025-01-23T03:55:46+0500"}
+{"level":"info","msg":"User logged in successfully: {27 Nabi j@example.com password123 User}","time":"2025-01-23T03:55:46+0500"}
+{"level":"info","msg":"Received Login request","time":"2025-01-23T03:55:50+0500"}
+{"level":"info","msg":"User logged in successfully: {27 Nabi j@example.com password123 User}","time":"2025-01-23T03:55:50+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-23T03:57:04+0500"}
+{"level":"info","msg":"Received Login request","time":"2025-01-23T03:57:08+0500"}
+{"level":"error","msg":"Invalid password during Login","time":"2025-01-23T03:57:08+0500"}
+{"level":"info","msg":"Received Login request","time":"2025-01-23T03:57:13+0500"}
+{"level":"info","msg":"User logged in successfully: {27 Nabi j@example.com password123 User}","time":"2025-01-23T03:57:13+0500"}
+{"level":"info","msg":"Received Login request","time":"2025-01-23T03:57:24+0500"}
+{"level":"error","msg":"Email not found during Login","time":"2025-01-23T03:57:24+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T03:59:55+0500"}
+{"level":"error","msg":"Failed to create user during Sign Up","time":"2025-01-23T03:59:55+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T04:00:06+0500"}
+{"level":"info","msg":"User signed up successfully: {29 Nabib n@example.com password123 User}","time":"2025-01-23T04:00:06+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T04:00:11+0500"}
+{"level":"error","msg":"Failed to create user during Sign Up","time":"2025-01-23T04:00:11+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-23T04:03:18+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T04:03:21+0500"}
+{"level":"error","msg":"Email already exists during Sign Up","time":"2025-01-23T04:03:21+0500"}
+{"level":"info","msg":"Received Login request","time":"2025-01-23T04:03:46+0500"}
+{"level":"error","msg":"Email not found during Login","time":"2025-01-23T04:03:46+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T04:07:57+0500"}
+{"level":"error","msg":"Missing required fields in Sign Up","time":"2025-01-23T04:07:57+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-23T04:13:34+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T04:13:37+0500"}
+{"level":"error","msg":"Invalid input for Sign Up","time":"2025-01-23T04:13:37+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T04:13:40+0500"}
+{"level":"error","msg":"Invalid input for Sign Up","time":"2025-01-23T04:13:40+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-23T15:17:42+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T15:18:04+0500"}
+{"level":"info","msg":"User signed up successfully: {31 Hayat hayaty@gmail.com 1234 User}","time":"2025-01-23T15:18:04+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-23T15:19:58+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T15:20:31+0500"}
+{"level":"info","msg":"User signed up successfully: {32 Dilyara dilya@gmail.com dilya123 User}","time":"2025-01-23T15:20:31+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-23T15:22:37+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T15:23:14+0500"}
+{"level":"error","msg":"Email already exists during Sign Up","time":"2025-01-23T15:23:14+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T15:23:39+0500"}
+{"level":"info","msg":"User signed up successfully: {33 Nabi nabibibi@gmail.com nabi User}","time":"2025-01-23T15:23:39+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-23T15:26:44+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T15:27:12+0500"}
+{"level":"info","msg":"User signed up successfully: {34 asd asd@gmail.com 123456 User}","time":"2025-01-23T15:27:12+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-23T15:30:01+0500"}
+{"level":"info","msg":"Received Login request","time":"2025-01-23T15:30:29+0500"}
+{"level":"info","msg":"User logged in successfully: {26 Nabi nabibi@gmail.com 12345 Admin}","time":"2025-01-23T15:30:29+0500"}
+{"level":"info","msg":"Received Login request","time":"2025-01-23T15:30:54+0500"}
+{"level":"info","msg":"User logged in successfully: {26 Nabi nabibi@gmail.com 12345 Admin}","time":"2025-01-23T15:30:54+0500"}
+{"level":"info","msg":"Received Login request","time":"2025-01-23T15:31:44+0500"}
+{"level":"error","msg":"Invalid password during Login","time":"2025-01-23T15:31:44+0500"}
+{"level":"info","msg":"Received Login request","time":"2025-01-23T15:31:50+0500"}
+{"level":"error","msg":"Invalid password during Login","time":"2025-01-23T15:31:50+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-23T15:34:54+0500"}
+{"level":"info","msg":"Received Login request","time":"2025-01-23T15:35:22+0500"}
+{"level":"info","msg":"User logged in successfully: {26 Nabi nabibi@gmail.com 12345 Admin}","time":"2025-01-23T15:35:22+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T15:36:06+0500"}
+{"level":"info","msg":"User signed up successfully: {35 Dilyara1 dilyara123@gmail.com dilya123 Admin}","time":"2025-01-23T15:36:06+0500"}
+{"level":"info","msg":"Received Login request","time":"2025-01-23T15:36:39+0500"}
+{"level":"error","msg":"Invalid password during Login","time":"2025-01-23T15:36:39+0500"}
+{"level":"info","msg":"Received Login request","time":"2025-01-23T15:36:48+0500"}
+{"level":"error","msg":"Invalid password during Login","time":"2025-01-23T15:36:48+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-23T15:38:43+0500"}
+{"level":"info","msg":"Received Login request","time":"2025-01-23T15:38:57+0500"}
+{"level":"info","msg":"User logged in successfully: {35 Dilyara1 dilyara123@gmail.com dilya123 Admin}","time":"2025-01-23T15:38:57+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-23T16:16:00+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T16:16:24+0500"}
+{"level":"info","msg":"User signed up successfully: {36 jnj jdfg@gmail.con vvv User}","time":"2025-01-23T16:16:24+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-23T16:18:35+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T16:18:47+0500"}
+{"level":"error","msg":"Email already exists during Sign Up","time":"2025-01-23T16:18:47+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T16:19:07+0500"}
+{"level":"info","msg":"User signed up successfully: {37 idigjd dfoso@gmail.com fff User}","time":"2025-01-23T16:19:07+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-23T16:19:48+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T16:20:03+0500"}
+{"level":"info","msg":"User signed up successfully: {38 uguooi hbvhvh@gmail.com qqq User}","time":"2025-01-23T16:20:03+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-23T16:20:26+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T16:20:40+0500"}
+{"level":"info","msg":"User signed up successfully: {39 uhuo kkjjj@gmail.com fff User}","time":"2025-01-23T16:20:40+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T16:21:32+0500"}
+{"level":"error","msg":"Email already exists during Sign Up","time":"2025-01-23T16:21:32+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T16:21:51+0500"}
+{"level":"error","msg":"Email already exists during Sign Up","time":"2025-01-23T16:21:51+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-23T16:24:05+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T16:24:22+0500"}
+{"level":"error","msg":"Email already exists during Sign Up","time":"2025-01-23T16:24:22+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T16:25:02+0500"}
+{"level":"error","msg":"Email already exists during Sign Up","time":"2025-01-23T16:25:02+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-23T16:29:18+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T16:29:39+0500"}
+{"level":"error","msg":"Email already exists during Sign Up","time":"2025-01-23T16:29:39+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-23T16:30:14+0500"}
+{"level":"info","msg":"Received Login request","time":"2025-01-23T16:30:25+0500"}
+{"level":"info","msg":"User logged in successfully: {35 Dilyara1 dilyara123@gmail.com dilya123 Admin}","time":"2025-01-23T16:30:25+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-23T16:30:58+0500"}
+{"level":"info","msg":"Received Login request","time":"2025-01-23T16:31:04+0500"}
+{"level":"error","msg":"Invalid password during Login","time":"2025-01-23T16:31:04+0500"}
+{"level":"info","msg":"Received Login request","time":"2025-01-23T16:31:57+0500"}
+{"level":"error","msg":"Email not found during Login","time":"2025-01-23T16:31:57+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-23T16:33:22+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T16:33:32+0500"}
+{"level":"error","msg":"Email already exists during Sign Up","time":"2025-01-23T16:33:32+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-23T18:17:36+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-23T18:21:08+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-23T18:22:41+0500"}
+{"level":"error","msg":"Failed to send verification email","time":"2025-01-23T18:22:41+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-29T14:32:57+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-29T14:44:58+0500"}
+{"level":"error","msg":"Missing id parameter in getUserHandler","time":"2025-01-29T14:45:33+0500"}
+{"level":"error","msg":"Missing id parameter in getUserHandler","time":"2025-01-29T14:45:52+0500"}
+{"level":"error","msg":"Missing id parameter in getUserHandler","time":"2025-01-29T14:46:13+0500"}
+{"level":"error","msg":"Missing id parameter in getUserHandler","time":"2025-01-29T14:46:15+0500"}
+{"level":"error","msg":"Missing id parameter in getUserHandler","time":"2025-01-29T14:46:19+0500"}
+{"level":"error","msg":"Rate limit exceeded","time":"2025-01-29T14:47:07+0500"}
+{"level":"error","msg":"Rate limit exceeded","time":"2025-01-29T14:47:58+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-29T15:35:06+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-29T15:41:58+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-29T15:45:08+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-29T15:45:55+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-29T15:48:40+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-29T15:51:39+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-29T15:51:55+0500"}
+{"level":"info","msg":"User signed up successfully: {45 Hayat nabib@gmail.com 1234 User false}","time":"2025-01-29T15:51:55+0500"}
+{"level":"info","msg":"Received Login request","time":"2025-01-29T15:52:06+0500"}
+{"level":"info","msg":"User logged in successfully: {45 Hayat nabib@gmail.com 1234 User false}","time":"2025-01-29T15:52:06+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-29T15:59:23+0500"}
+{"level":"info","msg":"User signed up successfully: {46 ygytfiu tfyg89o@gmail.com 234 User false}","time":"2025-01-29T15:59:23+0500"}
+{"level":"info","msg":"Database initialized successfully","time":"2025-01-29T18:54:40+0500"}
+{"level":"info","msg":"Received Sign Up request","time":"2025-01-29T18:55:51+0500"}
+{"level":"info","msg":"Temporary user created with ID: 1","time":"2025-01-29T18:55:51+0500"}
+{"level":"info","msg":"Sending email started. From: nurbibirahmanberdy@gmail.com, To: maksatkarzhaubaev91@gmail.com, Subject: Your Verification Code","time":"2025-01-29T18:55:51+0500"}
+{"level":"error","msg":"Failed to send email. From: nurbibirahmanberdy@gmail.com, To: maksatkarzhaubaev91@gmail.com, Subject: Your Verification Code, Error: 535 5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 38308e7fff4ca-3078ff5ba42sm5947841fa.81 - gsmtp","time":"2025-01-29T18:55:52+0500"}
+{"level":"error","msg":"Failed to send verification email to maksatkarzhaubaev91@gmail.com: 535 5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 38308e7fff4ca-3078ff5ba42sm5947841fa.81 - gsmtp","time":"2025-01-29T18:55:52+0500"}
+{"level":"info","msg":"Received Login request","time":"2025-01-29T18:59:49+0500"}
+{"level":"error","msg":"Email not found during Login","time":"2025-01-29T18:59:49+0500"}
+{"level":"info","msg":"Received Login request","time":"2025-01-29T18:59:57+0500"}
+{"level":"error","msg":"Email not found during Login","time":"2025-01-29T18:59:57+0500"}
+{"level":"info","msg":"Received Login request","time":"2025-01-29T19:00:10+0500"}
+{"level":"error","msg":"Email not found during Login","time":"2025-01-29T19:00:10+0500"}
+{"level":"info","msg":"Received Login request","time":"2025-01-29T19:00:24+0500"}
+{"level":"error","msg":"Email not found during Login","time":"2025-01-29T19:00:24+0500"}
+2025-01-29T19:22:56+05:00 [info] Database initialized successfully
+2025-01-29T19:25:42+05:00 [info] Database initialized successfully
+2025-01-29T19:26:44+05:00 [info] Database initialized successfully
+2025-01-29T19:37:47+05:00 [info] Database initialized successfully
+2025-01-29T19:44:34+05:00 [info] Database initialized successfully
+2025-01-29T19:44:49+05:00 [info] Database initialized successfully
+2025-01-29T19:45:44+05:00 [info] Database initialized successfully
+2025-01-29T19:51:23+05:00 [info] Database initialized successfully
+2025-01-29T19:57:31+05:00 [info] Database initialized successfully
+2025-01-30T15:13:01+05:00 [info] Database initialized successfully
+2025-01-30T15:22:40+05:00 [info] Database initialized successfully
+2025-01-30T15:24:31+05:00 [info] Database initialized successfully
+2025-01-30T15:25:23+05:00 [info] Database initialized successfully
+2025-01-30T15:47:07+05:00 [info] Database initialized successfully
+2025-01-30T15:53:43+05:00 [info] Database initialized successfully
+2025-01-30T16:05:42+05:00 [info] Database initialized successfully
+2025-01-30T16:26:07+05:00 [info] Database initialized successfully
+2025-01-30T16:29:09+05:00 [info] Database initialized successfully
+2025-01-30T16:38:20+05:00 [info] Database initialized successfully
+2025-01-30T16:43:55+05:00 [info] Database initialized successfully
+2025-01-30T17:48:45+05:00 [info] Database initialized successfully
+2025-01-30T17:48:56+05:00 [info] Database initialized successfully
+2025-01-30T19:13:02+05:00 [info] Database initialized successfully
+2025-01-30T19:14:26+05:00 [error] Rate limit exceeded
+2025-01-30T19:14:46+05:00 [error] Rate limit exceeded
+2025-01-30T19:19:28+05:00 [error] Rate limit exceeded
+2025-01-30T19:27:38+05:00 [info] Database initialized successfully
+2025-01-30T19:29:41+05:00 [info] Database initialized successfully
+2025-01-30T19:31:16+05:00 [info] Database initialized successfully
+2025-01-30T19:31:27+05:00 [info] Database initialized successfully
+2025-01-30T19:31:36+05:00 [info] User logged in successfully: nurbibirahmanberdy@gmail.com
+2025-01-30T19:31:45+05:00 [info] User logged in successfully: nurbibirahmanberdy@gmail.com
+2025-01-30T19:32:07+05:00 [error] Invalid password for email: nurbibirahmanberdy@gmail.com
+2025-01-30T19:33:20+05:00 [error] Invalid password for email: nurbibirahmanberdy@gmail.com
+2025-01-30T19:33:25+05:00 [info] User logged in successfully: nurbibirahmanberdy@gmail.com
+2025-01-30T19:34:34+05:00 [info] Database initialized successfully
+2025-01-30T19:34:41+05:00 [info] User logged in successfully: nurbibirahmanberdy@gmail.com
+2025-01-30T19:36:40+05:00 [info] Database initialized successfully
+2025-01-30T19:36:49+05:00 [error] Invalid password for email: nurbibirahmanberdy@gmail.com
+2025-01-30T19:37:06+05:00 [error] Invalid password for email: nurbibirahmanberdy@gmail.com
+2025-01-30T19:37:13+05:00 [error] Invalid password for email: nurbibirahmanberdy@gmail.com
+2025-01-30T19:37:21+05:00 [info] User logged in successfully: nurbibirahmanberdy@gmail.com
+2025-01-30T19:41:11+05:00 [info] Database initialized successfully
+2025-01-30T19:41:19+05:00 [error] Invalid password for email: nurbibirahmanberdy@gmail.com
+2025-01-30T19:41:39+05:00 [info] User logged in successfully: nurbibirahmanberdy@gmail.com
+2025-01-30T19:41:45+05:00 [info] User logged in successfully: nurbibirahmanberdy@gmail.com
+2025-01-30T19:43:08+05:00 [info] Database initialized successfully
+2025-01-30T19:43:17+05:00 [info] User logged in successfully: nurbibirahmanberdy@gmail.com
+2025-01-30T19:46:57+05:00 [info] Database initialized successfully
+2025-01-30T19:47:13+05:00 [info] User logged in successfully: nurbibirahmanberdy@gmail.com
+2025-01-30T19:47:25+05:00 [info] User logged in successfully: nurbibirahmanberdy@gmail.com
+2025-01-30T19:49:06+05:00 [info] Database initialized successfully
+2025-01-30T19:49:13+05:00 [info] User logged in successfully: nurbibirahmanberdy@gmail.com
+2025-01-30T19:52:47+05:00 [info] Database initialized successfully
+2025-01-30T19:52:55+05:00 [info] User logged in successfully: nurbibirahmanberdy@gmail.com
+2025-01-30T19:53:00+05:00 [info] User logged in successfully: nurbibirahmanberdy@gmail.com
+2025-01-30T19:53:13+05:00 [info] User logged in successfully: nurbibirahmanberdy@gmail.com
+2025-01-30T19:53:28+05:00 [info] User logged in successfully: nurbibirahmanberdy@gmail.com
+2025-01-30T19:53:35+05:00 [info] User logged in successfully: nurbibirahmanberdy@gmail.com
+{
+  "timestamp": "2025-01-31T16:25:08.360892+05:00",
+  "level": "info",
+  "message": "Verification code sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T16:25:31.772845+05:00",
+  "level": "info",
+  "message": "Verification code sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T16:30:47.244046+05:00",
+  "level": "info",
+  "message": "Verification code sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T16:34:39.560552+05:00",
+  "level": "info",
+  "message": "Verification code sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T16:41:59.339072+05:00",
+  "level": "info",
+  "message": "Verification code sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T16:42:39.711072+05:00",
+  "level": "info",
+  "message": "Verification code sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T16:46:28.608737+05:00",
+  "level": "info",
+  "message": "Verification code sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T16:47:12.542079+05:00",
+  "level": "info",
+  "message": "Verification code sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T16:47:35.191608+05:00",
+  "level": "error",
+  "message": "Invalid verification code for email: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T16:55:49.592543+05:00",
+  "level": "error",
+  "message": "Failed to create temp user: ERROR: duplicate key value violates unique constraint \"uni_temp_users_email\" (SQLSTATE 23505)"
+}
+{
+  "timestamp": "2025-01-31T16:56:22.020971+05:00",
+  "level": "error",
+  "message": "Failed to create temp user: ERROR: duplicate key value violates unique constraint \"uni_temp_users_email\" (SQLSTATE 23505)"
+}
+{
+  "timestamp": "2025-01-31T16:58:24.78572+05:00",
+  "level": "error",
+  "message": "Failed to create temp user in DB: ERROR: duplicate key value violates unique constraint \"uni_temp_users_email\" (SQLSTATE 23505)"
+}
+{
+  "timestamp": "2025-01-31T16:58:39.422562+05:00",
+  "level": "error",
+  "message": "Failed to create temp user in DB: ERROR: duplicate key value violates unique constraint \"uni_temp_users_email\" (SQLSTATE 23505)"
+}
+{
+  "timestamp": "2025-01-31T17:05:32.94346+05:00",
+  "level": "error",
+  "message": "Failed to create temp user in DB: ERROR: duplicate key value violates unique constraint \"uni_temp_users_email\" (SQLSTATE 23505)"
+}
+{
+  "timestamp": "2025-01-31T17:08:31.547609+05:00",
+  "level": "info",
+  "message": "Verification code sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T17:08:48.562466+05:00",
+  "level": "info",
+  "message": "Email verified for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T17:10:27.615969+05:00",
+  "level": "info",
+  "message": "Verification code sent to: maks.juz40edu@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T17:11:07.010478+05:00",
+  "level": "info",
+  "message": "Email verified for: maks.juz40edu@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T17:11:20.040887+05:00",
+  "level": "info",
+  "message": "OTP sent to: maks.juz40edu@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T17:17:22.982872+05:00",
+  "level": "info",
+  "message": "OTP sent to: maks.juz40edu@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T17:24:27.859417+05:00",
+  "level": "info",
+  "message": "OTP sent to: maks.juz40edu@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T17:25:08.723554+05:00",
+  "level": "info",
+  "message": "OTP sent to: maks.juz40edu@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T17:25:40.681638+05:00",
+  "level": "info",
+  "message": "Login successful for: maks.juz40edu@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T17:26:41.106742+05:00",
+  "level": "info",
+  "message": "OTP sent to: maks.juz40edu@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T17:26:57.754236+05:00",
+  "level": "info",
+  "message": "Login successful for: maks.juz40edu@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T17:27:14.311576+05:00",
+  "level": "info",
+  "message": "OTP sent to: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T17:27:31.764671+05:00",
+  "level": "info",
+  "message": "Login successful for: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T17:54:41.20237+05:00",
+  "level": "info",
+  "message": "Verification code sent to: dilara.galimkizi@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T17:55:12.319267+05:00",
+  "level": "info",
+  "message": "Email verified for: dilara.galimkizi@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T17:55:22.872894+05:00",
+  "level": "info",
+  "message": "OTP sent to: dilara.galimkizi@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T17:55:39.404499+05:00",
+  "level": "info",
+  "message": "Login successful for: dilara.galimkizi@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T17:55:50.398141+05:00",
+  "level": "info",
+  "message": "OTP sent to: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T17:56:10.272254+05:00",
+  "level": "info",
+  "message": "Login successful for: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T17:58:17.67237+05:00",
+  "level": "info",
+  "message": "Verification code sent to: informatikajuz40@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T17:58:32.183202+05:00",
+  "level": "info",
+  "message": "Email verified for: informatikajuz40@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T17:58:40.825945+05:00",
+  "level": "info",
+  "message": "OTP sent to: informatikajuz40@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T17:58:56.82643+05:00",
+  "level": "info",
+  "message": "Login successful for: informatikajuz40@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T18:00:21.401546+05:00",
+  "level": "info",
+  "message": "OTP sent to: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T18:00:39.260117+05:00",
+  "level": "info",
+  "message": "Login successful for: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T19:33:45.471153+05:00",
+  "level": "info",
+  "message": "Login successful for: maks.juz40edu@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T19:36:48.050826+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T19:38:36.412887+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T19:41:30.549058+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T19:41:30.558074+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T19:41:36.899045+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T19:41:36.901764+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T19:42:01.191282+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T19:42:01.195+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T19:57:40.202911+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T19:58:01.480409+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T20:06:43.547992+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T20:07:02.494201+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T20:10:15.371633+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T20:10:39.065355+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T20:15:26.213565+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-01-31T20:15:47.103233+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T16:51:13.293635+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T16:51:39.091395+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T16:54:48.136454+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T16:55:04.887606+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T17:13:45.913664+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T17:13:52.003839+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T17:17:36.468447+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T17:17:57.930115+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T17:28:10.200216+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T17:28:39.399+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T17:30:08.702559+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T17:30:15.692994+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T17:30:30.283318+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T17:31:18.447731+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T17:31:23.916511+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T17:31:38.218941+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T17:34:36.996643+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T17:34:54.896771+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T17:35:16.876691+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T17:35:35.383825+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T17:41:11.506624+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T17:41:24.000947+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T17:51:24.154791+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T17:51:42.437114+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T18:12:34.295223+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T18:12:55.922593+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T18:13:02.888234+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T18:13:22.008643+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T18:17:35.645323+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T18:17:49.761817+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T18:20:09.489457+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T18:20:23.392272+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T18:43:13.281084+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T18:43:37.888732+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T18:55:06.757865+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T18:55:30.06606+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T18:55:40.4087+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T18:59:47.937423+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T19:00:07.542663+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T19:00:39.260162+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T19:01:02.206138+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T19:14:20.517135+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-01T19:14:37.938674+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-03T14:59:51.394613+05:00",
+  "level": "info",
+  "message": "OTP sent to: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-02-03T15:00:18.158921+05:00",
+  "level": "info",
+  "message": "Login successful for: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-02-03T15:01:13.809686+05:00",
+  "level": "info",
+  "message": "OTP sent to: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-02-03T15:01:21.856242+05:00",
+  "level": "info",
+  "message": "OTP sent to: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-02-03T15:02:18.792731+05:00",
+  "level": "info",
+  "message": "OTP sent to: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-02-03T15:02:34.089555+05:00",
+  "level": "info",
+  "message": "Login successful for: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-02-04T14:52:29.797662+05:00",
+  "level": "info",
+  "message": "Login successful for: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-02-04T14:52:29.804878+05:00",
+  "level": "info",
+  "message": "OTP sent to: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-02-04T14:53:09.22481+05:00",
+  "level": "info",
+  "message": "OTP sent to: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-02-04T14:53:29.322104+05:00",
+  "level": "info",
+  "message": "Login successful for: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-02-04T14:55:15.474242+05:00",
+  "level": "info",
+  "message": "OTP sent to: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-02-04T14:55:36.509735+05:00",
+  "level": "info",
+  "message": "Login successful for: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-02-04T14:59:58.57311+05:00",
+  "level": "info",
+  "message": "OTP sent to: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-02-04T15:00:21.659551+05:00",
+  "level": "info",
+  "message": "Login successful for: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-02-04T15:02:09.84618+05:00",
+  "level": "info",
+  "message": "OTP sent to: informatikajuz40@gmail.com"
+}
+{
+  "timestamp": "2025-02-04T15:02:23.983263+05:00",
+  "level": "info",
+  "message": "Login successful for: informatikajuz40@gmail.com"
+}
+{
+  "timestamp": "2025-02-04T15:06:43.43455+05:00",
+  "level": "info",
+  "message": "OTP sent to: informatikajuz40@gmail.com"
+}
+{
+  "timestamp": "2025-02-04T15:06:58.036024+05:00",
+  "level": "info",
+  "message": "Login successful for: informatikajuz40@gmail.com"
+}
+{
+  "timestamp": "2025-02-04T15:08:24.007341+05:00",
+  "level": "info",
+  "message": "OTP sent to: informatikajuz40@gmail.com"
+}
+{
+  "timestamp": "2025-02-04T15:08:41.511847+05:00",
+  "level": "info",
+  "message": "Login successful for: informatikajuz40@gmail.com"
+}
+{
+  "timestamp": "2025-02-05T01:12:31.729855+05:00",
+  "level": "info",
+  "message": "Verification code sent to: johndoe@example.com"
+}
+{
+  "timestamp": "2025-02-05T01:41:50.870676+05:00",
+  "level": "error",
+  "message": "Email already registered: johndoe@example.com"
+}
+{
+  "timestamp": "2025-02-05T01:41:58.257808+05:00",
+  "level": "error",
+  "message": "Email already registered: johndoe@example.com"
+}
+{
+  "timestamp": "2025-02-05T01:45:51.66128+05:00",
+  "level": "error",
+  "message": "Email already registered: johndoe@example.com"
+}
+{
+  "timestamp": "2025-02-05T01:51:23.435372+05:00",
+  "level": "error",
+  "message": "Email already registered: johndoe@example.com"
+}
+{
+  "timestamp": "2025-02-05T01:53:04.089018+05:00",
+  "level": "error",
+  "message": "Email already registered: janesmith@example.com"
+}
+{
+  "timestamp": "2025-02-05T01:56:23.325786+05:00",
+  "level": "error",
+  "message": "Email already registered: newuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T01:59:42.393519+05:00",
+  "level": "error",
+  "message": "Email already registered: info@gmail.com"
+}
+{
+  "timestamp": "2025-02-05T02:00:49.207353+05:00",
+  "level": "error",
+  "message": "Email already registered: info@gmail.com"
+}
+{
+  "timestamp": "2025-02-05T02:06:22.770996+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T02:09:55.88391+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T02:09:55.990473+05:00",
+  "level": "info",
+  "message": "OTP sent to: jwtuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T02:11:18.216059+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T02:11:18.334928+05:00",
+  "level": "info",
+  "message": "OTP sent to: jwtuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T02:12:44.24568+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T02:12:44.351315+05:00",
+  "level": "info",
+  "message": "OTP sent to: jwtuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T02:14:19.994422+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T02:14:20.100054+05:00",
+  "level": "info",
+  "message": "OTP sent to: jwtuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T02:14:20.100264+05:00",
+  "level": "info",
+  "message": "Login successful for: jwtuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T02:16:14.825338+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T02:16:14.930769+05:00",
+  "level": "info",
+  "message": "OTP sent to: jwtuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T02:16:14.930958+05:00",
+  "level": "info",
+  "message": "Login successful for: jwtuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T02:17:03.301917+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T02:17:14.52873+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T02:17:14.632612+05:00",
+  "level": "info",
+  "message": "OTP sent to: jwtuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T02:17:14.632766+05:00",
+  "level": "info",
+  "message": "Login successful for: jwtuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T14:33:49.529979+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T14:33:49.633161+05:00",
+  "level": "info",
+  "message": "OTP sent to: jwtuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T14:33:49.633579+05:00",
+  "level": "info",
+  "message": "Login successful for: jwtuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T14:34:28.979985+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T14:34:29.084768+05:00",
+  "level": "info",
+  "message": "OTP sent to: jwtuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T14:34:29.085011+05:00",
+  "level": "info",
+  "message": "Login successful for: jwtuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T14:42:24.031485+05:00",
+  "level": "info",
+  "message": "OTP sent to: jwtuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T14:42:24.032929+05:00",
+  "level": "info",
+  "message": "Login successful for: jwtuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T14:44:16.875172+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T14:46:06.288167+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T14:58:46.418184+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T15:02:23.420532+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T15:04:30.934515+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T15:06:57.483457+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T15:08:14.05809+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T15:10:40.881869+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T15:14:58.884339+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T15:17:29.290871+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T15:21:07.670769+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T15:22:16.970492+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T15:22:59.106265+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T15:23:22.810364+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T15:25:31.977295+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T15:27:36.747919+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T15:28:15.224978+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T15:28:58.951511+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T15:29:35.151555+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T15:35:31.720723+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T15:36:08.803764+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T15:37:05.790767+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T15:38:03.340756+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T15:42:17.72245+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T15:43:07.56331+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T15:44:23.363114+05:00",
+  "level": "info",
+  "message": "Email verified for: testuser@example.com"
+}
+{
+  "timestamp": "2025-02-05T19:24:14.483688+05:00",
+  "level": "info",
+  "message": "Verification code sent to: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-02-05T19:24:43.295603+05:00",
+  "level": "info",
+  "message": "Email verified for: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-02-05T19:24:49.123343+05:00",
+  "level": "info",
+  "message": "OTP sent to: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T14:51:37.071583+05:00",
+  "level": "info",
+  "message": "Verification code sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T14:51:52.519022+05:00",
+  "level": "info",
+  "message": "Email verified for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T14:52:00.666697+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T15:03:47.391811+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T15:04:00.679521+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T15:20:52.315015+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T15:21:06.0861+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T15:28:50.277866+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T15:29:06.580386+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T15:38:23.608606+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T15:38:32.403947+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T15:38:38.467202+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T15:38:52.195338+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T15:42:25.335669+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T15:42:40.423756+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T15:53:32.582324+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T15:53:45.926716+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T16:05:03.311557+05:00",
+  "level": "info",
+  "message": "OTP sent to: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T16:05:19.025526+05:00",
+  "level": "info",
+  "message": "Login successful for: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T16:12:09.205128+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T16:21:35.29456+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T16:21:56.372821+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T16:29:28.071122+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T16:29:48.875103+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T18:00:30.973639+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T18:00:42.391769+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T18:03:04.198639+05:00",
+  "level": "info",
+  "message": "OTP sent to: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T18:03:12.311215+05:00",
+  "level": "info",
+  "message": "Login successful for: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T18:08:21.434263+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T18:08:37.851406+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T18:49:10.850599+05:00",
+  "level": "info",
+  "message": "OTP sent to: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T19:10:16.386168+05:00",
+  "level": "info",
+  "message": "Verification code sent to: dilara.galimkizi@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T19:10:27.636504+05:00",
+  "level": "info",
+  "message": "Email verified for: dilara.galimkizi@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T19:10:34.314173+05:00",
+  "level": "info",
+  "message": "OTP sent to: dilara.galimkizi@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T19:10:49.168555+05:00",
+  "level": "info",
+  "message": "Login successful for: dilara.galimkizi@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T19:11:15.019515+05:00",
+  "level": "info",
+  "message": "OTP sent to: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T19:11:52.184398+05:00",
+  "level": "info",
+  "message": "Login successful for: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T19:12:55.619915+05:00",
+  "level": "info",
+  "message": "OTP sent to: dilara.galimkizi@gmail.com"
+}
+{
+  "timestamp": "2025-02-06T19:13:10.714698+05:00",
+  "level": "info",
+  "message": "Login successful for: dilara.galimkizi@gmail.com"
+}
+{
+  "timestamp": "2025-02-07T17:32:49.879065+05:00",
+  "level": "info",
+  "message": "OTP sent to: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-07T17:33:03.505339+05:00",
+  "level": "info",
+  "message": "Login successful for: maksatkarzhaubaev91@gmail.com"
+}
+{
+  "timestamp": "2025-02-09T19:21:39.624753+05:00",
+  "level": "info",
+  "message": "Verification code sent to: informatikajuz40@gmail.com"
+}
+{
+  "timestamp": "2025-02-09T19:22:08.274318+05:00",
+  "level": "info",
+  "message": "Email verified for: informatikajuz40@gmail.com"
+}
+{
+  "timestamp": "2025-02-09T19:22:14.006593+05:00",
+  "level": "info",
+  "message": "OTP sent to: informatikajuz40@gmail.com"
+}
+{
+  "timestamp": "2025-02-09T19:22:26.775102+05:00",
+  "level": "info",
+  "message": "Login successful for: informatikajuz40@gmail.com"
+}
+{
+  "timestamp": "2025-02-09T21:31:30.965177+05:00",
+  "level": "info",
+  "message": "OTP sent to: informatikajuz40@gmail.com"
+}
+{
+  "timestamp": "2025-02-09T21:31:52.316503+05:00",
+  "level": "info",
+  "message": "Login successful for: informatikajuz40@gmail.com"
+}
+{
+  "timestamp": "2025-02-09T21:53:55.431891+05:00",
+  "level": "info",
+  "message": "OTP sent to: nurbibirahmanberdy@gmail.com"
+}
+{
+  "timestamp": "2025-02-09T21:54:12.270016+05:00",
+  "level": "info",
+  "message": "Login successful for: nurbibirahmanberdy@gmail.com"
+}
