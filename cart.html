@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина | Компьютерный клуб</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: #f4f4f4; }
+        .total { font-size: 20px; font-weight: bold; }
+        .btn { padding: 10px 15px; cursor: pointer; }
+        .btn-danger { background-color: red; color: white; border: none; }
+        .btn-primary { background-color: green; color: white; border: none; }
+    </style>
+</head>
+<body>
+    <h1>Корзина</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Цена</th>
+                <th>Количество</th>
+                <th>Удалить</th>
+            </tr>
+        </thead>
+        <tbody id="cart-items"></tbody>
+    </table>
+    <p class="total">Итоговая сумма: <span id="total-price">0</span> Т</p>
+    <button class="btn btn-primary" onclick="checkout()">Оплатить</button>
+    
+    <script>
+        function loadCart() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let cartTable = document.getElementById("cart-items");
+            cartTable.innerHTML = "";
+            let total = 0;
+            
+            cart.forEach((item, index) => {
+                let row = `<tr>
+                    <td>${item.name}</td>
+                    <td>${item.price} Т</td>
+                    <td><input type="number" value="${item.quantity || 1}" min="1" onchange="updateQuantity(${index}, this.value)"></td>
+                    <td><button class="btn btn-danger" onclick="removeItem(${index})">Удалить</button></td>
+                </tr>`;
+                cartTable.innerHTML += row;
+                total += item.price * (item.quantity || 1);
+            });
+            document.getElementById("total-price").innerText = total;
+        }
+
+        function updateQuantity(index, newQuantity) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart[index].quantity = parseInt(newQuantity);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        function removeItem(index) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        function checkout() {
+            alert("Заказ отправлен на сервер для оплаты!");
+            console.log(JSON.stringify(JSON.parse(localStorage.getItem('cart'))));
+        }
+
+        loadCart();
+    </script>
+</body>
+</html>
