@@ -1,7 +1,7 @@
 package main
 
 import (
-	"bytes"
+
 	"encoding/json"
 	"fmt"
 	"log"
@@ -13,7 +13,6 @@ import (
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/rs/cors"
 	"github.com/sirupsen/logrus"
-
 
 	"golang.org/x/crypto/bcrypt"
 	"golang.org/x/exp/rand"
@@ -386,7 +385,7 @@ func adminHandler(w http.ResponseWriter, r *http.Request) {
 // Реализация чата через WebSocket с разделением по ролям
 // =====================
 
-// // Расширенная структура сообщения (добавлено поле SenderRole)
+// Расширенная структура сообщения (добавлено поле SenderRole)
 // type Message struct {
 // 	ID         uint      `gorm:"primaryKey"`
 // 	ChatID     string    `gorm:"not null"`
@@ -398,19 +397,6 @@ func adminHandler(w http.ResponseWriter, r *http.Request) {
 // 	Email      string    `gorm:"not null"` // Жаңа өріс: пайдаланушының электрондық поштасы
 // }
 
-<<<<<<< HEAD
-func saveMessage(chatID, username, content, role, email string) {
-	msg := Message{
-		ChatID:     chatID,
-		Username:   username,
-		Content:    content,
-		Timestamp:  time.Now(),
-		Status:     "active",
-		SenderRole: role,  // Рөлді беру
-		Email:      email, // Пайдаланушының электрондық поштасын беру
-	}
-=======
-
 // func saveMessage(chatID, username, content, role, email string) {
 // 	msg := Message{
 // 		ChatID:     chatID,
@@ -418,10 +404,9 @@ func saveMessage(chatID, username, content, role, email string) {
 // 		Content:    content,
 // 		Timestamp:  time.Now(),
 // 		Status:     "active",
-// 		SenderRole: role, // Рөлді беру
+// 		SenderRole: role,  // Рөлді беру
 // 		Email:      email, // Пайдаланушының электрондық поштасын беру
 // 	}
->>>>>>> 46edfc6 (mess)
 
 // 	err := db.Create(&msg).Error
 // 	if err != nil {
@@ -436,18 +421,6 @@ func saveMessage(chatID, username, content, role, email string) {
 // 		return
 // 	}
 
-<<<<<<< HEAD
-	// Отправляем историю сообщений клиенту
-	for _, msg := range messages {
-		if err := ws.WriteJSON(msg); err != nil {
-			log.Println("Error sending message to client:", err)
-		}
-	}
-}
-
-// Задаём почту, на которую будут приходить сообщения (укажите свой адрес)
-var adminEmail = "nurbibirahmanberdy@gmail.com"
-=======
 // 	// Отправляем историю сообщений клиенту
 // 	for _, msg := range messages {
 // 		if err := ws.WriteJSON(msg); err != nil {
@@ -455,9 +428,9 @@ var adminEmail = "nurbibirahmanberdy@gmail.com"
 // 		}
 // 	}
 // }
+
 // // Задаём почту, на которую будут приходить сообщения (укажите свой адрес)
 // var adminEmail = "nurbibirahmanberdy@gmail.com"
->>>>>>> 46edfc6 (mess)
 
 // // Для WebSocket‑подключений различаем по query-параметру
 // var upgrader = websocket.Upgrader{
@@ -497,59 +470,6 @@ var adminEmail = "nurbibirahmanberdy@gmail.com"
 // 		sendMessageHistory(ws, chatID)
 // 	}
 
-<<<<<<< HEAD
-	// Чтение сообщений из соединения
-	for {
-		var msg Message
-		err := ws.ReadJSON(&msg)
-		if err != nil {
-			log.Println("WebSocket read error:", err)
-			if role == "admin" {
-				adminConn = nil
-			} else {
-				delete(clientConns, msg.ChatID)
-			}
-			break
-		}
-
-		// ЛОГ: Хабарламаның нақты мәндері қандай екенін көрейік
-		log.Printf("DEBUG: Received message -> Username: %s, Email: %s, Content: %s, Role: %s",
-			msg.Username, msg.Email, msg.Content, role)
-
-		if msg.Username == "" || msg.Email == "" {
-			log.Println("WARNING: Username or Email is EMPTY!")
-		}
-
-		msg.Timestamp = time.Now()
-		msg.SenderRole = role
-
-		saveMessage(chatID, msg.Username, msg.Content, role, msg.Email)
-
-		// Хабарламаны басқа тарапқа жіберу
-		if role == "client" {
-			// Отправляем сообщение на почту (если задан адрес)
-			if adminEmail != "" {
-				sendEmail(adminEmail, "New Chat Message", fmt.Sprintf("From chat %s: %s", msg.ChatID, msg.Content))
-			}
-			if adminConn != nil {
-				if err := adminConn.WriteJSON(msg); err != nil {
-					log.Println("Error sending message to admin:", err)
-				}
-			} else {
-				log.Println("Admin not connected; message not forwarded.")
-			}
-		} else if role == "admin" {
-			if client, ok := clientConns[msg.ChatID]; ok {
-				if err := client.WriteJSON(msg); err != nil {
-					log.Println("Error sending message to client:", err)
-				}
-			} else {
-				log.Printf("No client found with chat_id: %s", msg.ChatID)
-			}
-		}
-	}
-}
-=======
 // 	// Чтение сообщений из соединения
 // 	for {
 // 		var msg Message
@@ -563,20 +483,20 @@ var adminEmail = "nurbibirahmanberdy@gmail.com"
 // 			}
 // 			break
 // 		}
-	
+
 // 		// ЛОГ: Хабарламаның нақты мәндері қандай екенін көрейік
-// 		log.Printf("DEBUG: Received message -> Username: %s, Email: %s, Content: %s, Role: %s", 
+// 		log.Printf("DEBUG: Received message -> Username: %s, Email: %s, Content: %s, Role: %s",
 // 			msg.Username, msg.Email, msg.Content, role)
-	
+
 // 		if msg.Username == "" || msg.Email == "" {
 // 			log.Println("WARNING: Username or Email is EMPTY!")
 // 		}
-	
+
 // 		msg.Timestamp = time.Now()
 // 		msg.SenderRole = role
-	
+
 // 		saveMessage(chatID, msg.Username, msg.Content, role, msg.Email)
-	
+
 // 		// Хабарламаны басқа тарапқа жіберу
 // 		if role == "client" {
 // 			// Отправляем сообщение на почту (если задан адрес)
@@ -600,89 +520,88 @@ var adminEmail = "nurbibirahmanberdy@gmail.com"
 // 			}
 // 		}
 // 	}
-// }	
->>>>>>> 46edfc6 (mess)
+// }
 
-func createTransaction(w http.ResponseWriter, r *http.Request) {
-	var transaction Transaction
-	if err := json.NewDecoder(r.Body).Decode(&transaction); err != nil {
-		http.Error(w, `{"error":"Invalid input"}`, http.StatusBadRequest)
-		return
-	}
+// func createTransaction(w http.ResponseWriter, r *http.Request) {
+// 	var transaction Transaction
+// 	if err := json.NewDecoder(r.Body).Decode(&transaction); err != nil {
+// 		http.Error(w, `{"error":"Invalid input"}`, http.StatusBadRequest)
+// 		return
+// 	}
 
-	transaction.Status = "в ожидании оплаты"
-	if err := db.Create(&transaction).Error; err != nil {
-		http.Error(w, `{"error":"Failed to create transaction"}`, http.StatusInternalServerError)
-		return
-	}
+// 	transaction.Status = "в ожидании оплаты"
+// 	if err := db.Create(&transaction).Error; err != nil {
+// 		http.Error(w, `{"error":"Failed to create transaction"}`, http.StatusInternalServerError)
+// 		return
+// 	}
 
-	json.NewEncoder(w).Encode(transaction)
-}
+// 	json.NewEncoder(w).Encode(transaction)
+// }
 
-func updateTransactionStatus(w http.ResponseWriter, r *http.Request) {
-	var requestData struct {
-		ID     uint   `json:"id"`
-		Status string `json:"status"`
-	}
+// func updateTransactionStatus(w http.ResponseWriter, r *http.Request) {
+// 	var requestData struct {
+// 		ID     uint   `json:"id"`
+// 		Status string `json:"status"`
+// 	}
 
-	if err := json.NewDecoder(r.Body).Decode(&requestData); err != nil {
-		http.Error(w, `{"error":"Invalid input"}`, http.StatusBadRequest)
-		return
-	}
+// 	if err := json.NewDecoder(r.Body).Decode(&requestData); err != nil {
+// 		http.Error(w, `{"error":"Invalid input"}`, http.StatusBadRequest)
+// 		return
+// 	}
 
-	var transaction Transaction
-	if err := db.First(&transaction, requestData.ID).Error; err != nil {
-		http.Error(w, `{"error":"Transaction not found"}`, http.StatusNotFound)
-		return
-	}
+// 	var transaction Transaction
+// 	if err := db.First(&transaction, requestData.ID).Error; err != nil {
+// 		http.Error(w, `{"error":"Transaction not found"}`, http.StatusNotFound)
+// 		return
+// 	}
 
-	transaction.Status = requestData.Status
-	db.Save(&transaction)
+// 	transaction.Status = requestData.Status
+// 	db.Save(&transaction)
 
-	json.NewEncoder(w).Encode(transaction)
-}
+// 	json.NewEncoder(w).Encode(transaction)
+// }
 
-// Обработчик создания транзакции
-func createTransactionHandler(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodPost {
-		http.Error(w, "Метод не поддерживается", http.StatusMethodNotAllowed)
-		return
-	}
+// // Обработчик создания транзакции
+// func createTransactionHandler(w http.ResponseWriter, r *http.Request) {
+// 	if r.Method != http.MethodPost {
+// 		http.Error(w, "Метод не поддерживается", http.StatusMethodNotAllowed)
+// 		return
+// 	}
 
-	var transaction TransactionRequest
-	err := json.NewDecoder(r.Body).Decode(&transaction)
-	if err != nil {
-		http.Error(w, "Ошибка декодирования JSON", http.StatusBadRequest)
-		return
-	}
+// 	var transaction TransactionRequest
+// 	err := json.NewDecoder(r.Body).Decode(&transaction)
+// 	if err != nil {
+// 		http.Error(w, "Ошибка декодирования JSON", http.StatusBadRequest)
+// 		return
+// 	}
 
-	// Отправка запроса в микросервис
-	microserviceURL := "http://localhost:8081/transactions"
-	jsonData, err := json.Marshal(transaction)
-	if err != nil {
-		http.Error(w, "Ошибка сериализации данных", http.StatusInternalServerError)
-		return
-	}
+// 	// Отправка запроса в микросервис
+// 	microserviceURL := "http://localhost:8081/transactions"
+// 	jsonData, err := json.Marshal(transaction)
+// 	if err != nil {
+// 		http.Error(w, "Ошибка сериализации данных", http.StatusInternalServerError)
+// 		return
+// 	}
 
-	resp, err := http.Post(microserviceURL, "application/json", bytes.NewBuffer(jsonData))
-	if err != nil {
-		http.Error(w, "Ошибка отправки запроса в микросервис", http.StatusInternalServerError)
-		return
-	}
-	defer resp.Body.Close()
+// 	resp, err := http.Post(microserviceURL, "application/json", bytes.NewBuffer(jsonData))
+// 	if err != nil {
+// 		http.Error(w, "Ошибка отправки запроса в микросервис", http.StatusInternalServerError)
+// 		return
+// 	}
+// 	defer resp.Body.Close()
 
-	// Читаем ответ от микросервиса
-	var result map[string]interface{}
-	err = json.NewDecoder(resp.Body).Decode(&result)
-	if err != nil {
-		http.Error(w, "Ошибка декодирования ответа микросервиса", http.StatusInternalServerError)
-		return
-	}
+// 	// Читаем ответ от микросервиса
+// 	var result map[string]interface{}
+// 	err = json.NewDecoder(resp.Body).Decode(&result)
+// 	if err != nil {
+// 		http.Error(w, "Ошибка декодирования ответа микросервиса", http.StatusInternalServerError)
+// 		return
+// 	}
 
-	// Отправляем ответ клиенту
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(result)
-}
+// 	// Отправляем ответ клиенту
+// 	w.Header().Set("Content-Type", "application/json")
+// 	json.NewEncoder(w).Encode(result)
+// }
 
 // =====================
 // Главная функция: запуск сервера
@@ -707,9 +626,9 @@ func main() {
 	// Применяем middleware (rate limiting, CORS)
 	handler := rateLimitMiddleware(cors.Default().Handler(mux))
 
-	http.HandleFunc("/transaction/create", createTransaction)
-	http.HandleFunc("/transaction/update", updateTransactionStatus)
-	http.HandleFunc("/create-transaction", createTransactionHandler)
+	// http.HandleFunc("/transaction/create", createTransaction)
+	// http.HandleFunc("/transaction/update", updateTransactionStatus)
+	// http.HandleFunc("/create-transaction", createTransactionHandler)
 
 	fmt.Println("Server running on http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", handler))
