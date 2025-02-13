@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -28,22 +29,50 @@ import (
 // =====================
 
 type User struct {
-	ID        uint   `gorm:"primaryKey"`
+	ID        uint `gorm:"primaryKey"`
 	Name      string
 	Email     string `gorm:"unique"`
 	Password  string
-	Role      string // например, "User", "Admin"
-	Verified  bool   `gorm:"default:false"`
-	OTP       string `json:"otp,omitempty"`
+	Role      string    // например, "User", "Admin"
+	Verified  bool      `gorm:"default:false"`
+	OTP       string    `json:"otp,omitempty"`
 	OTPExpiry time.Time `json:"otp_expiry,omitempty"`
 }
 
 type TempUser struct {
-	ID               uint   `gorm:"primaryKey"`
+	ID               uint `gorm:"primaryKey"`
 	Name             string
 	Email            string `gorm:"unique"`
 	Password         string
 	VerificationCode string
+}
+
+type Transaction struct {
+	ID        uint      `gorm:"primaryKey"`
+	CartID    uint      `gorm:"not null"`
+	Status    string    `gorm:"type:varchar(20);not null"` // "в ожидании оплаты", "оплачено", "отклонено"
+	CreatedAt time.Time `gorm:"autoCreateTime"`
+	UpdatedAt time.Time `gorm:"autoUpdateTime"`
+}
+
+// Структура товара в корзине
+type CartItem struct {
+	ID    string  `json:"id"`
+	Name  string  `json:"name"`
+	Price float64 `json:"price"`
+}
+
+// Структура клиента
+type Customer struct {
+	ID    string `json:"id"`
+	Name  string `json:"name"`
+	Email string `json:"email"`
+}
+
+// Структура запроса для транзакции
+type TransactionRequest struct {
+	CartItems []CartItem `json:"cartItems"`
+	Customer  Customer   `json:"customer"`
 }
 
 var (
@@ -94,8 +123,9 @@ func initDatabase() {
 	if err != nil {
 		log.Fatal("Failed to connect to database:", err)
 	}
-	db.AutoMigrate(&User{}, &TempUser{}, &Message{})
+	db.AutoMigrate(&User{}, &TempUser{}, &Message{}, &Transaction{})
 	log.Println("Database initialized successfully")
+
 }
 
 // =====================
@@ -369,7 +399,6 @@ type Message struct {
 	Email      string    `gorm:"not null"` // Жаңа өріс: пайдаланушының электрондық поштасы
 }
 
-
 func saveMessage(chatID, username, content, role, email string) {
 	msg := Message{
 		ChatID:     chatID,
@@ -377,7 +406,7 @@ func saveMessage(chatID, username, content, role, email string) {
 		Content:    content,
 		Timestamp:  time.Now(),
 		Status:     "active",
-		SenderRole: role, // Рөлді беру
+		SenderRole: role,  // Рөлді беру
 		Email:      email, // Пайдаланушының электрондық поштасын беру
 	}
 
@@ -401,6 +430,7 @@ func sendMessageHistory(ws *websocket.Conn, chatID string) {
 		}
 	}
 }
+
 // Задаём почту, на которую будут приходить сообщения (укажите свой адрес)
 var adminEmail = "nurbibirahmanberdy@gmail.com"
 
@@ -455,20 +485,20 @@ func handleConnections(w http.ResponseWriter, r *http.Request) {
 			}
 			break
 		}
-	
+
 		// ЛОГ: Хабарламаның нақты мәндері қандай екенін көрейік
-		log.Printf("DEBUG: Received message -> Username: %s, Email: %s, Content: %s, Role: %s", 
+		log.Printf("DEBUG: Received message -> Username: %s, Email: %s, Content: %s, Role: %s",
 			msg.Username, msg.Email, msg.Content, role)
-	
+
 		if msg.Username == "" || msg.Email == "" {
 			log.Println("WARNING: Username or Email is EMPTY!")
 		}
-	
+
 		msg.Timestamp = time.Now()
 		msg.SenderRole = role
-	
+
 		saveMessage(chatID, msg.Username, msg.Content, role, msg.Email)
-	
+
 		// Хабарламаны басқа тарапқа жіберу
 		if role == "client" {
 			// Отправляем сообщение на почту (если задан адрес)
@@ -492,8 +522,88 @@ func handleConnections(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	}
-}	
+}
 
+func createTransaction(w http.ResponseWriter, r *http.Request) {
+	var transaction Transaction
+	if err := json.NewDecoder(r.Body).Decode(&transaction); err != nil {
+		http.Error(w, `{"error":"Invalid input"}`, http.StatusBadRequest)
+		return
+	}
+
+	transaction.Status = "в ожидании оплаты"
+	if err := db.Create(&transaction).Error; err != nil {
+		http.Error(w, `{"error":"Failed to create transaction"}`, http.StatusInternalServerError)
+		return
+	}
+
+	json.NewEncoder(w).Encode(transaction)
+}
+
+func updateTransactionStatus(w http.ResponseWriter, r *http.Request) {
+	var requestData struct {
+		ID     uint   `json:"id"`
+		Status string `json:"status"`
+	}
+
+	if err := json.NewDecoder(r.Body).Decode(&requestData); err != nil {
+		http.Error(w, `{"error":"Invalid input"}`, http.StatusBadRequest)
+		return
+	}
+
+	var transaction Transaction
+	if err := db.First(&transaction, requestData.ID).Error; err != nil {
+		http.Error(w, `{"error":"Transaction not found"}`, http.StatusNotFound)
+		return
+	}
+
+	transaction.Status = requestData.Status
+	db.Save(&transaction)
+
+	json.NewEncoder(w).Encode(transaction)
+}
+
+// Обработчик создания транзакции
+func createTransactionHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "Метод не поддерживается", http.StatusMethodNotAllowed)
+		return
+	}
+
+	var transaction TransactionRequest
+	err := json.NewDecoder(r.Body).Decode(&transaction)
+	if err != nil {
+		http.Error(w, "Ошибка декодирования JSON", http.StatusBadRequest)
+		return
+	}
+
+	// Отправка запроса в микросервис
+	microserviceURL := "http://localhost:8081/transactions"
+	jsonData, err := json.Marshal(transaction)
+	if err != nil {
+		http.Error(w, "Ошибка сериализации данных", http.StatusInternalServerError)
+		return
+	}
+
+	resp, err := http.Post(microserviceURL, "application/json", bytes.NewBuffer(jsonData))
+	if err != nil {
+		http.Error(w, "Ошибка отправки запроса в микросервис", http.StatusInternalServerError)
+		return
+	}
+	defer resp.Body.Close()
+
+	// Читаем ответ от микросервиса
+	var result map[string]interface{}
+	err = json.NewDecoder(resp.Body).Decode(&result)
+	if err != nil {
+		http.Error(w, "Ошибка декодирования ответа микросервиса", http.StatusInternalServerError)
+		return
+	}
+
+	// Отправляем ответ клиенту
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(result)
+}
 
 // =====================
 // Главная функция: запуск сервера
@@ -517,6 +627,10 @@ func main() {
 
 	// Применяем middleware (rate limiting, CORS)
 	handler := rateLimitMiddleware(cors.Default().Handler(mux))
+
+	http.HandleFunc("/transaction/create", createTransaction)
+	http.HandleFunc("/transaction/update", updateTransactionStatus)
+	http.HandleFunc("/create-transaction", createTransactionHandler)
 
 	fmt.Println("Server running on http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", handler))
